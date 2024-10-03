@@ -83,6 +83,24 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             RPCExample();
         }
+
+        //when 1 key is pressed
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            pv.RPC("MoveUp", RpcTarget.All, new object[] { 1 });
+        }
+
+        //when 2 key is pressed
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            pv.RPC("MoveUp", RpcTarget.All, new object[] { 2 });
+        }
+
+        //when 3 key is pressed
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            pv.RPC("MoveUp", RpcTarget.All, new object[] { 3 });
+        }
     }
 
     void RPCExample()
@@ -100,5 +118,28 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void Print(string this1, string this2, int this3)
     {
         Debug.Log(this1 + " " + this2 + " " + this3);
+    }
+
+    [PunRPC]
+    private void MoveUp(int card)
+    {
+        switch (card)
+        {
+            case 1:
+                GameObject.FindGameObjectWithTag("rc1").GetComponent<RoleCard>().MoveUp();
+                GameObject.FindGameObjectWithTag("rc2").GetComponent<RoleCard>().MoveDown();
+                GameObject.FindGameObjectWithTag("rc3").GetComponent<RoleCard>().MoveDown();
+                break;
+            case 2:
+                GameObject.FindGameObjectWithTag("rc1").GetComponent<RoleCard>().MoveDown();
+                GameObject.FindGameObjectWithTag("rc2").GetComponent<RoleCard>().MoveUp();
+                GameObject.FindGameObjectWithTag("rc3").GetComponent<RoleCard>().MoveDown();
+                break;
+            case 3:
+                GameObject.FindGameObjectWithTag("rc1").GetComponent<RoleCard>().MoveDown();
+                GameObject.FindGameObjectWithTag("rc2").GetComponent<RoleCard>().MoveDown();
+                GameObject.FindGameObjectWithTag("rc3").GetComponent<RoleCard>().MoveUp();
+                break;
+        }
     }
 }
