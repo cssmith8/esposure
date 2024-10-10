@@ -69,8 +69,7 @@ public class Menu : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Debug.Log(PhotonNetwork.NickName);
-        //Debug.Log(PhotonNetwork.NickName.Length);
+        //Debug.Log(PhotonNetwork.NickName);
         var hash = PhotonNetwork.CurrentRoom.CustomProperties;
         if ((bool)hash["started"] == false)
         {

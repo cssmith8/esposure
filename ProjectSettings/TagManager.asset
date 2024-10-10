@@ -7,6 +7,9 @@ TagManager:
   - rc1
   - rc2
   - rc3
+  - rc4
+  - rc5
+  - rc6
   layers:
   - Default
   - TransparentFX

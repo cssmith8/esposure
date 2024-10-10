@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoleCard : MonoBehaviour
+public class LocalRoleCard : MonoBehaviour
 {
     public bool isUp = false;
     private RectTransform rt;
@@ -18,10 +18,8 @@ public class RoleCard : MonoBehaviour
 
     public void MoveUp()
     {
-        if (!isUp)
-        {
-            StartCoroutine(MoveUpCoroutine());
-        }
+        StartCoroutine(MoveUpCoroutine());
+        StopCoroutine(MoveDownCoroutine());
     }
 
     //coroutine to move the card up
@@ -31,7 +29,7 @@ public class RoleCard : MonoBehaviour
         isUp = true;
         float time = Time.timeSinceLevelLoad;
         //move the card up
-        while (rt.position.y < screenheight / 2)
+        while (rt.position.y < screenheight * 0.25f)
         {
             rt.position = new Vector3(rt.position.x, rt.position.y + 2 * screenheight * (Time.timeSinceLevelLoad - time), rt.position.z);
             time = Time.timeSinceLevelLoad;
@@ -44,10 +42,8 @@ public class RoleCard : MonoBehaviour
 
     public void MoveDown()
     {
-        if (isUp)
-        {
-            StartCoroutine(MoveDownCoroutine());
-        }
+        StartCoroutine(MoveDownCoroutine());
+        StopCoroutine(MoveUpCoroutine());
     }
 
     //coroutine to move the card down
@@ -57,7 +53,7 @@ public class RoleCard : MonoBehaviour
         isUp = false;
         float time = Time.timeSinceLevelLoad;
         //move the card down
-        while (rt.position.y > screenheight / 4)
+        while (rt.position.y > screenheight * 0.1f)
         {
             rt.position = new Vector3(rt.position.x, rt.position.y - 2 * screenheight * (Time.timeSinceLevelLoad - time), rt.position.z);
             time = Time.timeSinceLevelLoad;
