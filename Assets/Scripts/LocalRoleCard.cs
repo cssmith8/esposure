@@ -18,8 +18,8 @@ public class LocalRoleCard : MonoBehaviour
 
     public void MoveUp()
     {
-        StartCoroutine(MoveUpCoroutine());
         StopCoroutine(MoveDownCoroutine());
+        StartCoroutine(MoveUpCoroutine());
     }
 
     //coroutine to move the card up
@@ -42,8 +42,8 @@ public class LocalRoleCard : MonoBehaviour
 
     public void MoveDown()
     {
-        StartCoroutine(MoveDownCoroutine());
         StopCoroutine(MoveUpCoroutine());
+        StartCoroutine(MoveDownCoroutine());
     }
 
     //coroutine to move the card down
