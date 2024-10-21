@@ -35,9 +35,6 @@ public class EnemyRoleCard : MonoBehaviour
             time = Time.timeSinceLevelLoad;
             yield return null;
         }
-
-        
-        
     }
 
     public void MoveDown()

@@ -161,5 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93192b8481520e0448387386ba639fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedPos: 0.25
-  defaultPos: 0.1
+  selectedPos: -2
+  defaultPos: -3
+  cardMoveSpeed: 1
