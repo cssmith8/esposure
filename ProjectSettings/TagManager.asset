@@ -4,12 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - rc1
-  - rc2
-  - rc3
-  - rc4
-  - rc5
-  - rc6
+  - EnemyHand
   layers:
   - Default
   - TransparentFX

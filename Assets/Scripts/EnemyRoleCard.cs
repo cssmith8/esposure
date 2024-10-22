@@ -1,66 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyRoleCard : MonoBehaviour
 {
-    public bool isUp = false;
-    private RectTransform rt;
-    private float screenheight;
+    public int index = 0;
+    private Vector3 target = new Vector3(0, 0, 0);
+    private Vector3 raised, def, hidden;
+    private int state = 0;
+    // 0 = default
+    // 1 = hovered
+    // 2 = selected
+    // 3 = hidden
 
     // Start is called before the first frame update
     void Start()
     {
-        rt = GetComponent<RectTransform>();
-        screenheight = Screen.height;
-        MoveDown();
+        raised = gameObject.transform.parent.GetChild(0).transform.localPosition;
+        def = gameObject.transform.parent.GetChild(1).transform.localPosition;
+        hidden = gameObject.transform.parent.GetChild(2).transform.localPosition;
     }
 
-    public void MoveUp()
+    public void Move(bool selected)
     {
-        StartCoroutine(MoveUpCoroutine());
-        StopCoroutine(MoveDownCoroutine());
+        if (selected)
+        {
+            target = raised;
+            state = 2;
+        }
+        else
+        {
+            target = def;
+            state = 0;
+        }
+        StopCoroutine(MoveToTarget());
+        StartCoroutine(MoveToTarget());
     }
 
     //coroutine to move the card up
-    IEnumerator MoveUpCoroutine()
+    IEnumerator MoveToTarget()
     {
-        //set the card to be up
-        isUp = true;
         float time = Time.timeSinceLevelLoad;
-        //move the card up
-        while (rt.position.y > screenheight * 0.75f)
+        while (Vector3.Distance(transform.localPosition, target) > 0.1f)
         {
-            rt.position = new Vector3(rt.position.x, rt.position.y - 2 * screenheight * (Time.timeSinceLevelLoad - time), rt.position.z);
-            time = Time.timeSinceLevelLoad;
+            while (Time.timeSinceLevelLoad - time < Time.fixedDeltaTime) yield return null; //lock this to 60fps
+            transform.localPosition = Vector3.Lerp(transform.localPosition, target, 0.08f);
             yield return null;
         }
-
-        
-        
     }
-
-    public void MoveDown()
-    {
-        StartCoroutine(MoveDownCoroutine());
-        StopCoroutine(MoveUpCoroutine());
-    }
-
-    //coroutine to move the card down
-    IEnumerator MoveDownCoroutine()
-    {
-        //set the card to be down
-        isUp = false;
-        float time = Time.timeSinceLevelLoad;
-        //move the card down
-        while (rt.position.y < screenheight * 0.9f)
-        {
-            rt.position = new Vector3(rt.position.x, rt.position.y + 2 * screenheight * (Time.timeSinceLevelLoad - time), rt.position.z);
-            time = Time.timeSinceLevelLoad;
-            yield return null;
-        }
-
-        
-    }
-
 }
