@@ -12,7 +12,7 @@ public enum CardState {
     Hidden = 3,
 }
 
-public abstract class RoleCard : MonoBehaviour
+public abstract class CardSlot : MonoBehaviour
 {
     public int slotID = 0;
     protected bool IsLocal;

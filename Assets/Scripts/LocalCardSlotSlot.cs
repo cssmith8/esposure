@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using CS = CardState;
 
-public class LocalRoleCard : RoleCard
+public class LocalCardSlotSlot : CardSlot
 {
     protected override void Start() {
         base.Start();
@@ -57,7 +57,7 @@ public class LocalRoleCard : RoleCard
         {
             if (i != slotID)
             {
-                localCards.transform.GetChild(i).GetChild(4).GetComponent<LocalRoleCard>().Deselect();
+                localCards.transform.GetChild(i).GetChild(4).GetComponent<LocalCardSlotSlot>().Deselect();
             }
         }
     }
