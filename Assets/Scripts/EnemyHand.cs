@@ -12,11 +12,11 @@ public class EnemyHand : MonoBehaviour
         {
             if (i == index)
             {
-                transform.GetChild(i).GetChild(3).GetComponent<EnemyCardSlotSlot>().Move(true);
+                transform.GetChild(i).GetChild(3).GetComponent<EnemyCardSlot>().Move(true);
             }
             else
             {
-                transform.GetChild(i).GetChild(3).GetComponent<EnemyCardSlotSlot>().Move(false);
+                transform.GetChild(i).GetChild(3).GetComponent<EnemyCardSlot>().Move(false);
             }
         }
     }

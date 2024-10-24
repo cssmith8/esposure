@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using CS = CardState;
 
-public class LocalCardSlotSlot : CardSlot
+public class LocalCardSlot : CardSlot
 {
     protected override void Start() {
         base.Start();
@@ -35,38 +35,15 @@ public class LocalCardSlotSlot : CardSlot
     {
         if (state == CS.Hovered)
         {
-            Select();
+            hm.selectCard(id);
             return;
         }
         if (state == CS.Selected)
         {
-            GameManager.localInstance.SelectRole(-1);
             Deselect();
+            GameManager.localInstance.SelectRole(-1);
             return;
         }
-    }
-
-    private void Select()
-    {
-        state = CS.Selected;
-        target = raised;
-        Move();
-        GameManager.localInstance.SelectRole(slotID);
-        GameObject localCards = transform.parent.parent.gameObject;
-        for (int i = 0; i < localCards.transform.childCount; i++)
-        {
-            if (i != slotID)
-            {
-                localCards.transform.GetChild(i).GetChild(4).GetComponent<LocalCardSlotSlot>().Deselect();
-            }
-        }
-    }
-
-    public void Deselect()
-    {
-        state = CS.Idle;
-        target = idle;
-        Move();
     }
 
     public void Hide()

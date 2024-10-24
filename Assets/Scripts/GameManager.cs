@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
     }
-
     
 
     void PlayerVariableSetExample()

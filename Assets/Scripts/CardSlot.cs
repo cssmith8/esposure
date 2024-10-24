@@ -14,7 +14,8 @@ public enum CardState {
 
 public abstract class CardSlot : MonoBehaviour
 {
-    public int slotID = 0;
+    public int id = 0;
+    public HandManager hm;
     protected bool IsLocal;
     protected Vector3 target = Vector3.zero;
     [SerializeReference] protected GameObject objRaised, objHovered, objIdle, objHidden;
@@ -34,6 +35,20 @@ public abstract class CardSlot : MonoBehaviour
         StopCoroutine(MoveToTarget());
         StartCoroutine(MoveToTarget());
     }
+    
+    public void Select()
+    {
+        state = CS.Selected;
+        target = raised;
+        Move();
+    }
+
+    public void Deselect()
+    {
+        state = CS.Idle;
+        target = idle;
+        Move();
+    }
 
     //coroutine to move the card up
     protected IEnumerator MoveToTarget()
@@ -45,5 +60,9 @@ public abstract class CardSlot : MonoBehaviour
             transform.localPosition = Vector3.Lerp(transform.localPosition, target, 0.08f);
             yield return null;
         }
+    }
+
+    public void SetSlotID(int id) {
+        this.id = id;
     }
 }

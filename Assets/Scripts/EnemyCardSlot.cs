@@ -4,7 +4,7 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using CS = CardState;
 
-public class EnemyCardSlotSlot : CardSlot
+public class EnemyCardSlot : CardSlot
 {
     protected override void Start() {
         base.Start();
