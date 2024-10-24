@@ -26,4 +26,11 @@ public class EnemyCardSlotSlot : CardSlot
 
         base.Move();
     }
+
+    public void Hide()
+    {
+        target = hidden;
+        state = CS.Hidden;
+        base.Move();
+    }
 }

@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -53,11 +54,12 @@ public class LocalCardSlotSlot : CardSlot
         Move();
         GameManager.localInstance.SelectRole(slotID);
         GameObject localCards = transform.parent.parent.gameObject;
+        localCards.GetComponent<HandManager>().selectedCardIndex = slotID;
         for (int i = 0; i < localCards.transform.childCount; i++)
         {
             if (i != slotID)
             {
-                localCards.transform.GetChild(i).GetChild(4).GetComponent<LocalCardSlotSlot>().Deselect();
+                localCards.transform.GetChild(i).GetChild(1).GetComponent<LocalCardSlotSlot>().Deselect();
             }
         }
     }
@@ -71,8 +73,16 @@ public class LocalCardSlotSlot : CardSlot
 
     public void Hide()
     {
-        state = CS.Hidden;
-        target = hidden;
+        if (state == CS.Idle || state == CS.Hovered)
+        {
+            state = CS.Hidden;
+            target = hidden;
+        } else
+        {
+            state = CS.Idle;
+            target = idle;
+        }
+        
         Move();
     }
 }

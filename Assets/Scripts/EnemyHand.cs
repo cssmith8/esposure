@@ -12,12 +12,20 @@ public class EnemyHand : MonoBehaviour
         {
             if (i == index)
             {
-                transform.GetChild(i).GetChild(3).GetComponent<EnemyCardSlotSlot>().Move(true);
+                transform.GetChild(i).GetChild(1).GetComponent<EnemyCardSlotSlot>().Move(true);
             }
             else
             {
-                transform.GetChild(i).GetChild(3).GetComponent<EnemyCardSlotSlot>().Move(false);
+                transform.GetChild(i).GetChild(1).GetComponent<EnemyCardSlotSlot>().Move(false);
             }
         }
+    }
+
+    public void HideCard(int index)
+    {
+        Debug.Log("Hiding card at index " + index);
+        int real = transform.childCount;
+        if (index >= real) return;
+        transform.GetChild(index).GetChild(1).GetComponent<EnemyCardSlotSlot>().Hide();
     }
 }

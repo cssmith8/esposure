@@ -6,6 +6,7 @@ namespace DefaultNamespace {
     public class HandManager : MonoBehaviour {
         private List<DisplayManager> dmList = new List<DisplayManager>();
         public Branch cardFamily;
+        [HideInInspector] public int selectedCardIndex = 0;
         
         private void Start() {
             // todo replace grab children method with something more specific
@@ -38,6 +39,17 @@ namespace DefaultNamespace {
             Branch branchToSet = (Branch)((((int)cardFamily + 3) % 5) + 1); // todo ew lol
             cardFamily = branchToSet;
             setImages(branchToSet);
+        }
+
+        public void hideCards()
+        {
+            // for every child
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (i == selectedCardIndex) continue;
+                transform.GetChild(i).GetChild(1).GetComponent<LocalCardSlotSlot>().Hide();
+                GameManager.localInstance.HideRole(i);
+            }
         }
     }
 }
