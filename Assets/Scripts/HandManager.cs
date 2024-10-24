@@ -8,6 +8,7 @@ public class HandManager : MonoBehaviour {
     private List<DisplayManager> dmList = new List<DisplayManager>();
     private List<CardSlot> csList = new List<CardSlot>();
     public Branch cardFamily;
+    [HideInInspector] public int selectedCardIndex = 0;
     
     private void Start() {
         // todo replace grab children method with something more specific
@@ -38,16 +39,6 @@ public class HandManager : MonoBehaviour {
         }
     }
 
-    public void selectCard(int cardID) {
-        foreach (CardSlot slot in csList) {
-            if (slot.id == cardID) {
-                slot.Select();
-                continue;
-            }
-            slot.Deselect();
-        }
-    }
-
     public void incrementBranch() {
         Branch branchToSet = (Branch)(((int)cardFamily % 5) + 1); // todo ew lol
         cardFamily = branchToSet;
@@ -58,5 +49,26 @@ public class HandManager : MonoBehaviour {
         Branch branchToSet = (Branch)((((int)cardFamily + 3) % 5) + 1); // todo ew lol
         cardFamily = branchToSet;
         setImages(branchToSet);
+    }
+
+    public void hideCards()
+    {
+        // for every child
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (i == selectedCardIndex) continue;
+            transform.GetChild(i).GetChild(1).GetComponent<LocalCardSlot>().Hide();
+            GameManager.localInstance.HideRole(i);
+        }
+    }
+    
+    public void selectCard(int cardID) {
+        foreach (CardSlot slot in csList) {
+            if (slot.id == cardID) {
+                slot.Select();
+                continue;
+            }
+            slot.Deselect();
+        }
     }
 }

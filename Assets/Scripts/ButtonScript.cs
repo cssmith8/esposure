@@ -30,7 +30,7 @@ public class Button : MonoBehaviour
     // This is called when the mouse clicks on the collider
     private void OnMouseDown() {
         sr.color = clickColor; // Change color on click
-        Debug.Log("Button Clicked!"); // Perform your button action here
+        //Debug.Log("Button Clicked!"); // Perform your button action here
         onClick?.Invoke();
     }
 }

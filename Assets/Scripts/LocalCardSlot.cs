@@ -48,8 +48,16 @@ public class LocalCardSlot : CardSlot
 
     public void Hide()
     {
-        state = CS.Hidden;
-        target = hidden;
+        if (state == CS.Idle || state == CS.Hovered)
+        {
+            state = CS.Hidden;
+            target = hidden;
+        } else
+        {
+            state = CS.Idle;
+            target = idle;
+        }
+        
         Move();
     }
 }

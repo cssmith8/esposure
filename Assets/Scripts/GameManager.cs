@@ -102,6 +102,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         pv.RPC("MoveUp", enemypv.Owner, index);
     }
 
+    public void HideRole(int index)
+    {
+        pv.RPC("HideCard", enemypv.Owner, index);
+    }
+
     //RPC (Function that can be called across clients)
     [PunRPC]
     private void Print(string this1, string this2, int this3)
@@ -115,5 +120,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         //print
         Debug.Log("Selected card " + card);
         GameObject.FindWithTag("EnemyHand").GetComponent<EnemyHand>().SelectCard(card);
+    }
+
+    [PunRPC]
+    private void HideCard(int card)
+    {
+        Debug.Log("Hiding card " + card);
+        GameObject.FindWithTag("EnemyHand").GetComponent<EnemyHand>().HideCard(card);
     }
 }

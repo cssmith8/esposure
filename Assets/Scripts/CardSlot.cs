@@ -60,6 +60,7 @@ public abstract class CardSlot : MonoBehaviour
             transform.localPosition = Vector3.Lerp(transform.localPosition, target, 0.08f);
             yield return null;
         }
+        transform.localPosition = target;
     }
 
     public void SetSlotID(int id) {
