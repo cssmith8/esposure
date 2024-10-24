@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class RoomPanel : MonoBehaviour
 {
     private TMP_Text playerList;
-    private Button startButton;
+    [SerializeField] private GameObject startButtonObject;
     private TMP_Text roomCode;
     private PhotonView pv;
 
@@ -23,10 +23,8 @@ public class RoomPanel : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-
         playerList = transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMP_Text>();
         roomCode = transform.GetChild(0).GetChild(1).gameObject.GetComponent<TMP_Text>();
-        startButton = transform.GetChild(0).GetChild(3).gameObject.GetComponent<Button>();
 
         roomCode.text = "Code: " + PhotonNetwork.CurrentRoom.Name;
 
@@ -54,7 +52,7 @@ public class RoomPanel : MonoBehaviour
 
     private void ShowStartButton()
     {
-        startButton.gameObject.SetActive(PhotonNetwork.IsMasterClient);
+        startButtonObject.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public void StartButtonPress()
