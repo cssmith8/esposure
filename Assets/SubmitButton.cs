@@ -10,5 +10,6 @@ public class SubmitButton : MonoBehaviour
     {
         //in default namespace
         hand.GetComponent<HandManager>().hideCards();
+        GameManager.localInstance.Submit();
     }
 }

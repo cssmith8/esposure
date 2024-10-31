@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
@@ -108,6 +109,22 @@ public class GameManager : MonoBehaviourPunCallbacks
         pv.RPC("HideCard", enemypv.Owner, index);
     }
 
+    public void Submit()
+    {
+        //update tthe room variable
+        Hashtable hash = PhotonNetwork.CurrentRoom.CustomProperties;
+        hash["submitted"] = (int) hash["submitted"] + 1;
+        
+        //if both players have submitted
+        if ((int)hash["submitted"] == 2)
+        {
+            pv.RPC("OnBothSubmit", RpcTarget.All);
+            hash["submitted"] = 0;
+
+        }
+        PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
+    }
+
     //RPC (Function that can be called across clients)
     [PunRPC]
     private void Print(string this1, string this2, int this3)
@@ -128,5 +145,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Hiding card " + card);
         GameObject.FindWithTag("EnemyHand").GetComponent<EnemyHand>().HideCard(card);
+    }
+
+    [PunRPC]
+    private void OnBothSubmit()
+    {
+        GameObject.FindWithTag("EnemyHand").GetComponent<EnemyHand>().ResetCards();
+        GameObject hand = HandManager.localInstance.gameObject;
+        for (int i = 0; i < hand.transform.childCount; i++)
+        {
+             hand.transform.GetChild(i).GetChild(1).GetComponent<LocalCardSlotSlot>().Deselect();
+        }
     }
 }

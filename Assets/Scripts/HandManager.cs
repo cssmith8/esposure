@@ -4,11 +4,15 @@ using UnityEngine;
 
 namespace DefaultNamespace {
     public class HandManager : MonoBehaviour {
+        //Singleton
+        [HideInInspector] public static HandManager localInstance;
+
         private List<DisplayManager> dmList = new List<DisplayManager>();
         public Branch cardFamily;
         [HideInInspector] public int selectedCardIndex = 0;
         
         private void Start() {
+            localInstance = this;
             // todo replace grab children method with something more specific
             for (int i = 0; i < transform.childCount; i++) {
                 var childSR = transform.GetChild(i)
