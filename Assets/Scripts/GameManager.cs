@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [HideInInspector] public static bool playerOne = true;
 
+    public int score = 0;
+
     void Start()
     {
         if (GetComponent<PhotonView>().IsMine)
@@ -156,5 +158,20 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
              hand.transform.GetChild(i).GetChild(1).GetComponent<LocalCardSlotSlot>().Deselect();
         }
+        if (HandManager.localInstance.cardFamily == Branch.Finance)
+        {
+            localInstance.score += 2;
+        } else
+        {
+            localInstance.score += 1;
+        }
+        ScoreCanvas.instance.UpdateLocalScore(localInstance.score);
+        pv.RPC("UpdateEnemyScore", enemypv.Owner, localInstance.score);
+    }
+
+    [PunRPC]
+    private void UpdateEnemyScore(int amount)
+    {
+        ScoreCanvas.instance.UpdateEnemyScore(amount);
     }
 }
