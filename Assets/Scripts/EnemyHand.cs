@@ -5,36 +5,24 @@ using UnityEngine;
 
 public class EnemyHand : MonoBehaviour
 {
-    public void SelectCard(int index)
+    private GameObject[] slots;
+    [HideInInspector] public static EnemyHand instance;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        int real = transform.childCount;
-        for (int i = 0; i < real; i++)
+        instance = this;
+        //for each child
+        for (int i = 0; i < transform.childCount; i++)
         {
-            if (i == index)
-            {
-                transform.GetChild(i).GetChild(1).GetComponent<EnemyCardSlotSlot>().Move(true);
-            }
-            else
-            {
-                transform.GetChild(i).GetChild(1).GetComponent<EnemyCardSlotSlot>().Move(false);
-            }
+            //add the child to the slots array
+            slots[i] = transform.GetChild(i).gameObject;
         }
     }
 
-    public void HideCard(int index)
+    // Update is called once per frame
+    void Update()
     {
-        //Debug.Log("Hiding card at index " + index);
-        int real = transform.childCount;
-        if (index >= real) return;
-        transform.GetChild(index).GetChild(1).GetComponent<EnemyCardSlotSlot>().Hide();
-    }
 
-    public void ResetCards()
-    {
-        int real = transform.childCount;
-        for (int i = 0; i < real; i++)
-        {
-            transform.GetChild(i).GetChild(1).GetComponent<EnemyCardSlotSlot>().Move(false);
-        }
     }
 }

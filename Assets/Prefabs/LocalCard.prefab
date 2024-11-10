@@ -331,9 +331,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6924961685309722720}
-  - component: {fileID: 4819336016634673357}
+  - component: {fileID: 4055542236097972354}
   m_Layer: 0
-  m_Name: Card
+  m_Name: LocalCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +355,7 @@ Transform:
   - {fileID: 2650804545700601844}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4819336016634673357
+--- !u!114 &4055542236097972354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -364,11 +364,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4210891075837935125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb6cadc0a80a56d46b8143ea89cf3167, type: 3}
+  m_Script: {fileID: 11500000, guid: 21d0f96a8ae1cc341be704741fc22de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   category: 
-  display: {fileID: 1141554153909357694}
+  display: {fileID: 0}
+  real: 0
 --- !u!1 &4541210187307692209
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +396,7 @@ Transform:
   m_GameObject: {fileID: 4541210187307692209}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: -0.1}
   m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
   m_ConstrainProportionsScale: 1
   m_Children: []
