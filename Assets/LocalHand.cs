@@ -39,14 +39,17 @@ public class LocalHand : MonoBehaviour
         
     }
 
-    public int GetSelectedCard()
+    public GameObject GetSelectedCard()
     {
-        return selectedCardIndex;
+        if (selectedCardIndex == -1)
+        {
+            return slots[0].GetComponent<CardSlot>().card;
+        }
+        return slots[selectedCardIndex].GetComponent<CardSlot>().card;
     }
 
     public void HideUnselected()
     {
-        Debug.Log(selectedCardIndex);
         //for every slot
         for (int i = 0; i < slots.Count; i++)
         {
@@ -54,7 +57,10 @@ public class LocalHand : MonoBehaviour
             if (i != selectedCardIndex)
             {
                 //hide the card
-                slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Hide();
+                if (slots[i].GetComponent<CardSlot>().card != null)
+                {
+                    slots[i].GetComponent<CardSlot>().card.GetComponent<Card>().Hide();
+                }
             }
         }
     }
@@ -65,10 +71,14 @@ public class LocalHand : MonoBehaviour
         {
             if (i != index)
             {
-                slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Deselect();
+                if (slots[i].GetComponent<CardSlot>().card != null)
+                {
+                    slots[i].GetComponent<CardSlot>().card.GetComponent<Card>().Deselect();
+                }
             }
         }
         selectedCardIndex = index;
+        GameManager.localInstance.SelectCard(index);
     }
 
     public void DeselectCard()

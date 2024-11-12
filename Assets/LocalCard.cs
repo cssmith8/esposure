@@ -33,7 +33,7 @@ public class LocalCard : Card
         if (state == CS.Hovered)
         {
             LocalHand.instance.SelectCard(slot.GetComponent<CardSlot>().index);
-            Flip();
+            //Flip();
             Select();
             return;
         }

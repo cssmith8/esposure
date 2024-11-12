@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardSlot : MonoBehaviour
 {
     [SerializeField] private GameObject objRaised, objHovered, objIdle, objHidden;
-    [HideInInspector] private GameObject card = null;
+    [HideInInspector] public GameObject card = null;
     [SerializeField] public int index = 0;
 
     public GameObject RaisedPos() { return objRaised; }

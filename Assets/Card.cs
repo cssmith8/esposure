@@ -43,6 +43,12 @@ public class Card : MonoBehaviour
         objHidden = s.HiddenPos();
     }
 
+    public void MoveTo(Vector3 pos)
+    {
+        StopCoroutine("MoveToTarget");
+        StartCoroutine(MoveToTarget(pos, 0.5f));
+    }
+
     protected void Move(CardState target)
     {
         switch (target)
@@ -72,11 +78,11 @@ public class Card : MonoBehaviour
     }
 
     //coroutine to move the card up
-    protected IEnumerator MoveToTarget(Vector3 target)
+    protected IEnumerator MoveToTarget(Vector3 target, float t = 0.2f)
     {
         Vector3 initial = transform.localPosition;
         float time = Time.timeSinceLevelLoad;
-        float totalTime = 0.2f;
+        float totalTime = t;
         while (Time.timeSinceLevelLoad - time < totalTime)
         {
             float progress = (Time.timeSinceLevelLoad - time) / totalTime;

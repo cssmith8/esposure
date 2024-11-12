@@ -49,11 +49,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void EnemySelect(int index)
     {
-        //EnemyHand.instance.SelectCard(index);
+        EnemyHand.instance.SelectCard(index);
     }
 
     public void Submit()
     {
+        pv.RPC("OnEnemySubmit", enemypv.Owner);
         //update the room variable
         Hashtable hash = PhotonNetwork.CurrentRoom.CustomProperties;
         hash["submitted"] = (int) hash["submitted"] + 1;
@@ -85,5 +86,6 @@ public class GameManager : MonoBehaviourPunCallbacks
              hand.transform.GetChild(i).GetChild(1).GetComponent<LocalCardSlotSlot>().Deselect();
         }
         */
+        ReviewArea.instance.ReviewSequence();
     }
 }

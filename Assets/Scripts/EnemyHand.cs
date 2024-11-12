@@ -21,10 +21,13 @@ public class EnemyHand : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject GetSelectedCard()
     {
-
+        if (selectedCardIndex == -1)
+        {
+            return slots[0].GetComponent<CardSlot>().card;
+        }
+        return slots[selectedCardIndex].GetComponent<CardSlot>().card;
     }
 
     public void HideUnselected()
@@ -36,7 +39,10 @@ public class EnemyHand : MonoBehaviour
             if (i != selectedCardIndex)
             {
                 //hide the card
-                slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Hide();
+                if (slots[i].GetComponent<CardSlot>().card != null)
+                {
+                    slots[i].GetComponent<CardSlot>().card.GetComponent<Card>().Hide();
+                }
             }
         }
     }
@@ -51,11 +57,18 @@ public class EnemyHand : MonoBehaviour
             if (i == index)
             {
                 //select the card
-                slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Select();
+                if (slots[i].GetComponent<CardSlot>().card != null)
+                {
+                    slots[i].GetComponent<CardSlot>().card.GetComponent<Card>().Select();
+                }
+                
             } else
             {
                 //deselect the card
-                slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Deselect();
+                if (slots[i].GetComponent<CardSlot>().card != null)
+                {
+                    slots[i].GetComponent<CardSlot>().card.GetComponent<Card>().Deselect();
+                }
             }
         }
     }
