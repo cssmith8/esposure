@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace DefaultNamespace {
     public class HandManager : MonoBehaviour {
+        /*
         //Singleton
         [HideInInspector] public static HandManager localInstance;
 
@@ -55,5 +56,6 @@ namespace DefaultNamespace {
                 GameManager.localInstance.HideRole(i);
             }
         }
+        */
     }
 }

@@ -69,13 +69,21 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
+    private void OnEnemySubmit()
+    {
+        EnemyHand.instance.HideUnselected();
+    }
+
+    [PunRPC]
     private void OnBothSubmit()
     {
+        /*
         //GameObject.FindWithTag("EnemyHand").GetComponent<EnemyHand>().ResetCards();
         GameObject hand = HandManager.localInstance.gameObject;
         for (int i = 0; i < hand.transform.childCount; i++)
         {
              hand.transform.GetChild(i).GetChild(1).GetComponent<LocalCardSlotSlot>().Deselect();
         }
+        */
     }
 }

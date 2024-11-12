@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LocalHand : MonoBehaviour
 {
-    private GameObject[] slots;
+    private List<GameObject> slots = new List<GameObject>();
     [HideInInspector] public static LocalHand instance;
     private int selectedCardIndex = -1;
 
@@ -16,8 +16,21 @@ public class LocalHand : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             //add the child to the slots array
-            slots[i] = transform.GetChild(i).gameObject;
+            slots.Add(transform.GetChild(i).gameObject);
         }
+        StartCoroutine(RevealAll());
+    }
+
+    //coroutine to flip all cards
+    public IEnumerator RevealAll()
+    {
+        float totalTime = 0.5f;
+        for (int i = 0; i < slots.Count; i++)
+        {
+            yield return new WaitForSeconds(totalTime / slots.Count);
+            slots[i].GetComponent<CardSlot>().RevealCard();
+        }
+
     }
 
     // Update is called once per frame
@@ -31,21 +44,31 @@ public class LocalHand : MonoBehaviour
         return selectedCardIndex;
     }
 
-    public void SelectCard(GameObject card)
+    public void HideUnselected()
     {
+        Debug.Log(selectedCardIndex);
         //for every slot
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Count; i++)
         {
-            //if the slot is the card
-            if (slots[i].transform.GetChild(1).GetChild(0) == card)
+            //if the slot is the selected card
+            if (i != selectedCardIndex)
             {
-                //set the selected card index to the slot index
-                selectedCardIndex = i;
-            } else
+                //hide the card
+                slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Hide();
+            }
+        }
+    }
+
+    public void SelectCard(int index)
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (i != index)
             {
                 slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Deselect();
             }
         }
+        selectedCardIndex = index;
     }
 
     public void DeselectCard()

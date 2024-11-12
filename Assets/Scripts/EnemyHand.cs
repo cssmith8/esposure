@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class EnemyHand : MonoBehaviour
 {
-    private GameObject[] slots;
+    private List<GameObject> slots = new List<GameObject>();
     [HideInInspector] public static EnemyHand instance;
+    private int selectedCardIndex = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,7 @@ public class EnemyHand : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             //add the child to the slots array
-            slots[i] = transform.GetChild(i).gameObject;
+            slots.Add(transform.GetChild(i).gameObject);
         }
     }
 
@@ -24,5 +25,38 @@ public class EnemyHand : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void HideUnselected()
+    {
+        //for every slot
+        for (int i = 0; i < slots.Count; i++)
+        {
+            //if the slot is the selected card
+            if (i != selectedCardIndex)
+            {
+                //hide the card
+                slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Hide();
+            }
+        }
+    }
+
+    public void SelectCard(int index)
+    {
+        selectedCardIndex = index;
+        //for each slot
+        for (int i = 0; i < slots.Count; i++)
+        {
+            //if the slot is the selected card
+            if (i == index)
+            {
+                //select the card
+                slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Select();
+            } else
+            {
+                //deselect the card
+                slots[i].transform.GetChild(1).GetChild(0).GetComponent<Card>().Deselect();
+            }
+        }
     }
 }

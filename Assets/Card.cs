@@ -15,25 +15,32 @@ public class Card : MonoBehaviour
 {
     public string category;
     [SerializeField] private GameObject display;
-    [SerializeReference] private GameObject slot;
-    [SerializeReference] protected GameObject objRaised, objHovered, objIdle, objHidden;
-    private bool isFlipped = false;
+    [HideInInspector] protected GameObject slot;
+    [HideInInspector] protected GameObject objRaised, objHovered, objIdle, objHidden;
+    private bool isFlipped = true;
     public CardState state = CardState.Idle;
 
     // Start is called before the first frame update
     void Start()
     {
-        slot = transform.parent.parent.gameObject;
-        objRaised = slot.transform.GetChild(0).GetChild(0).gameObject;
-        objHovered = slot.transform.GetChild(0).GetChild(1).gameObject;
-        objIdle = slot.transform.GetChild(0).GetChild(2).gameObject;
-        objHidden = slot.transform.GetChild(0).GetChild(3).gameObject;
+        Assign(transform.parent.parent.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Assign(GameObject slot)
+    {
+        this.slot = slot;
+        CardSlot s = slot.GetComponent<CardSlot>();
+        s.AssignCard(gameObject);
+        objRaised = s.RaisedPos();
+        objHovered = s.HoveredPos();
+        objIdle = s.IdlePos();
+        objHidden = s.HiddenPos();
     }
 
     protected void Move(CardState target)
@@ -67,11 +74,17 @@ public class Card : MonoBehaviour
     //coroutine to move the card up
     protected IEnumerator MoveToTarget(Vector3 target)
     {
+        Vector3 initial = transform.localPosition;
         float time = Time.timeSinceLevelLoad;
-        while (Vector3.Distance(transform.localPosition, target) > 0.1f)
+        float totalTime = 0.2f;
+        while (Time.timeSinceLevelLoad - time < totalTime)
         {
-            while (Time.timeSinceLevelLoad - time < Time.fixedDeltaTime) yield return null; //lock this to 60fps
-            transform.localPosition = Vector3.Lerp(transform.localPosition, target, 0.08f);
+            float progress = (Time.timeSinceLevelLoad - time) / totalTime;
+            transform.localPosition = new Vector3(
+                Mathf.SmoothStep(initial.x, target.x, progress),
+                Mathf.SmoothStep(initial.y, target.y, progress),
+                Mathf.SmoothStep(initial.z, target.z, progress)
+            );
             yield return null;
         }
         transform.localPosition = target;
@@ -80,6 +93,30 @@ public class Card : MonoBehaviour
     public void Deselect()
     {
         Move(CardState.Idle);
+    }
+
+    public void Select()
+    {
+        Move(CardState.Selected);
+    }
+
+    public void Hide()
+    {
+        Move(CardState.Hidden);
+    }
+
+    public void Flip()
+    {
+        if (isFlipped)
+        {
+            StartCoroutine(FlipR());
+            isFlipped = false;
+        }
+        else
+        {
+            StartCoroutine(FlipH());
+            isFlipped = true;
+        }
     }
 
     public void FlipReveal()
@@ -95,7 +132,7 @@ public class Card : MonoBehaviour
     public IEnumerator FlipR()
     {
         float time = 0;
-        float fliptime = 0.5f;
+        float fliptime = 0.2f;
         while (time < fliptime) {
             display.transform.localScale = new Vector3(1 - time / fliptime, 1, 1);
             time += Time.deltaTime;
@@ -129,7 +166,7 @@ public class Card : MonoBehaviour
     public IEnumerator FlipH()
     {
         float time = 0;
-        float fliptime = 0.5f;
+        float fliptime = 0.2f;
         while (time < fliptime)
         {
             display.transform.localScale = new Vector3(1 - time / fliptime, 1, 1);

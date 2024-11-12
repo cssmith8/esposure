@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class SubmitButton : MonoBehaviour
 {
-    [SerializeField] private GameObject hand;
     public void Submit()
     {
         //in default namespace
-        hand.GetComponent<HandManager>().hideCards();
+        LocalHand.instance.HideUnselected();
         GameManager.localInstance.Submit();
     }
 }

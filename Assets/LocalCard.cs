@@ -7,12 +7,6 @@ using CS = CardState;
 public class LocalCard : Card
 {
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -38,13 +32,13 @@ public class LocalCard : Card
     {
         if (state == CS.Hovered)
         {
-            LocalHand.instance.SelectCard(gameObject);
-            Move(CS.Selected);
+            LocalHand.instance.SelectCard(slot.GetComponent<CardSlot>().index);
+            Flip();
+            Select();
             return;
         }
         if (state == CS.Selected)
         {
-            
             Deselect();
             return;
         }
