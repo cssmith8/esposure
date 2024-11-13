@@ -43,4 +43,5 @@ public class ReviewArea : MonoBehaviour
         enemyCard.transform.SetParent(transform);
         enemyCard.GetComponent<Card>().MoveTo(enemySlot.transform.localPosition);
     }
+
 }
