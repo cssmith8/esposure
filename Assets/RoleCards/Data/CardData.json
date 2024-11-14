@@ -1,0 +1,302 @@
+[
+  {
+    "ID": "01",
+    "RoleName": "Talent Scout",
+    "Branch": "Operations",
+    "Challenge": [1, 53]
+  },
+  {
+    "ID": "02",
+    "RoleName": "Head Chef",
+    "Branch": "Operations",
+    "Challenge": [12, 58]
+  },
+  {
+    "ID": "03",
+    "RoleName": "Esports Analyst",
+    "Branch": "Operations",
+    "Challenge": [16, 63]
+  },
+  {
+    "ID": "04",
+    "RoleName": "Facilities Manager",
+    "Branch": "Operations",
+    "Challenge": [18]
+  },
+  {
+    "ID": "05",
+    "RoleName": "Product Manager",
+    "Branch": "Operations",
+    "Challenge": [19]
+  },
+  {
+    "ID": "06",
+    "RoleName": "Nutritionist",
+    "Branch": "Operations",
+    "Challenge": [23]
+  },
+  {
+    "ID": "07",
+    "RoleName": "Event Manager",
+    "Branch": "Operations",
+    "Challenge": [24, 72]
+  },
+  {
+    "ID": "08",
+    "RoleName": "Fitness Coach",
+    "Branch": "Operations",
+    "Challenge": [39]
+  },
+  {
+    "ID": "09",
+    "RoleName": "Travel Coordinator",
+    "Branch": "Operations",
+    "Challenge": [42]
+  },
+  {
+    "ID": 10,
+    "RoleName": "Equipment Manager",
+    "Branch": "Operations",
+    "Challenge": [43]
+  },
+  {
+    "ID": 11,
+    "RoleName": "HR Manager",
+    "Branch": "Operations",
+    "Challenge": [49]
+  },
+  {
+    "ID": 12,
+    "RoleName": "Social Media Manager",
+    "Branch": "Marketing",
+    "Challenge": [2, 52]
+  },
+  {
+    "ID": 13,
+    "RoleName": "3D Artist/Animator",
+    "Branch": "Marketing",
+    "Challenge": [6, 57]
+  },
+  {
+    "ID": 14,
+    "RoleName": "Public Relations Specialist",
+    "Branch": "Marketing",
+    "Challenge": [8]
+  },
+  {
+    "ID": 15,
+    "RoleName": "Community Manager",
+    "Branch": "Marketing",
+    "Challenge": [10, 62]
+  },
+  {
+    "ID": 16,
+    "RoleName": "Graphic Designer",
+    "Branch": "Marketing",
+    "Challenge": [11, 67]
+  },
+  {
+    "ID": 17,
+    "RoleName": "Influencer",
+    "Branch": "Marketing",
+    "Challenge": [35, 71]
+  },
+  {
+    "ID": 18,
+    "RoleName": "Photographer",
+    "Branch": "Marketing",
+    "Challenge": [36]
+  },
+  {
+    "ID": 19,
+    "RoleName": "Videographer",
+    "Branch": "Marketing",
+    "Challenge": [37]
+  },
+  {
+    "ID": 20,
+    "RoleName": "Scriptwriter",
+    "Branch": "Marketing",
+    "Challenge": [41]
+  },
+  {
+    "ID": 21,
+    "RoleName": "Journalist",
+    "Branch": "Marketing",
+    "Challenge": [44]
+  },
+  {
+    "ID": 22,
+    "RoleName": "Content Creator",
+    "Branch": "Marketing",
+    "Challenge": [47]
+  },
+  {
+    "ID": 23,
+    "RoleName": "Team Manager",
+    "Branch": "Management",
+    "Challenge": [3, 56]
+  },
+  {
+    "ID": 24,
+    "RoleName": "Psychologist",
+    "Branch": "Management",
+    "Challenge": [4, 51]
+  },
+  {
+    "ID": 25,
+    "RoleName": "Team Captain",
+    "Branch": "Management",
+    "Challenge": [7, 61]
+  },
+  {
+    "ID": 26,
+    "RoleName": "Head Coach",
+    "Branch": "Management",
+    "Challenge": [9]
+  },
+  {
+    "ID": 27,
+    "RoleName": "Performance Coach",
+    "Branch": "Management",
+    "Challenge": [13]
+  },
+  {
+    "ID": 28,
+    "RoleName": "General Manager",
+    "Branch": "Management",
+    "Challenge": [25, 66]
+  },
+  {
+    "ID": 29,
+    "RoleName": "Production Manager",
+    "Branch": "Management",
+    "Challenge": [38, 70]
+  },
+  {
+    "ID": 30,
+    "RoleName": "Program Manager",
+    "Branch": "Management",
+    "Challenge": [40]
+  },
+  {
+    "ID": 31,
+    "RoleName": "Project Manager",
+    "Branch": "Management",
+    "Challenge": [46, 75]
+  },
+  {
+    "ID": 32,
+    "RoleName": "Assistant Coach",
+    "Branch": "Management",
+    "Challenge": [48]
+  },
+  {
+    "ID": 33,
+    "RoleName": "Game Designer",
+    "Branch": "Technology",
+    "Challenge": [5, 55]
+  },
+  {
+    "ID": 34,
+    "RoleName": "Broadcast Engineer",
+    "Branch": "Technology",
+    "Challenge": [14, 60]
+  },
+  {
+    "ID": 35,
+    "RoleName": "Cybersecurity Analyst",
+    "Branch": "Technology",
+    "Challenge": [15, 65]
+  },
+  {
+    "ID": 36,
+    "RoleName": "IT Coordinator",
+    "Branch": "Technology",
+    "Challenge": [17, 69]
+  },
+  {
+    "ID": 37,
+    "RoleName": "Technical Support",
+    "Branch": "Technology",
+    "Challenge": [20]
+  },
+  {
+    "ID": 38,
+    "RoleName": "Cloud Security Engineer",
+    "Branch": "Technology",
+    "Challenge": [21]
+  },
+  {
+    "ID": 39,
+    "RoleName": "Software Engineer",
+    "Branch": "Technology",
+    "Challenge": [22, 74]
+  },
+  {
+    "ID": 40,
+    "RoleName": "Lighting Technician",
+    "Branch": "Technology",
+    "Challenge": [34]
+  },
+  {
+    "ID": 41,
+    "RoleName": "Sound Engineer",
+    "Branch": "Technology",
+    "Challenge": [50]
+  },
+  {
+    "ID": 42,
+    "RoleName": "Business Developer",
+    "Branch": "Finance",
+    "Challenge": [26, 54]
+  },
+  {
+    "ID": 43,
+    "RoleName": "Lawyer",
+    "Branch": "Finance",
+    "Challenge": [27, 59]
+  },
+  {
+    "ID": 44,
+    "RoleName": "Accountant",
+    "Branch": "Finance",
+    "Challenge": [28, 64]
+  },
+  {
+    "ID": 45,
+    "RoleName": "Customer Support",
+    "Branch": "Finance",
+    "Challenge": [29, 68]
+  },
+  {
+    "ID": 46,
+    "RoleName": "Esports Agent",
+    "Branch": "Finance",
+    "Challenge": [30, 73]
+  },
+  {
+    "ID": 47,
+    "RoleName": "Sponsorship Coordinator",
+    "Branch": "Finance",
+    "Challenge": [31]
+  },
+  {
+    "ID": 48,
+    "RoleName": "Financial Analyst",
+    "Branch": "Finance",
+    "Challenge": [32]
+  },
+  {
+    "ID": 49,
+    "RoleName": "Treasurer",
+    "Branch": "Finance",
+    "Challenge": [33]
+  },
+  {
+    "ID": 50,
+    "RoleName": "Auditor",
+    "Branch": "Finance",
+    "Challenge": [45]
+  }
+]
