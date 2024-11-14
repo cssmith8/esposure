@@ -28,6 +28,10 @@ public class ReviewArea : MonoBehaviour
         GrabEnemyCard();
         yield return new WaitForSeconds(1f);
         enemyCard.GetComponent<Card>().FlipReveal();
+        yield return new WaitForSeconds(1f);
+        int localScore = localCard.GetComponent<Card>().branch == Branch.Finance ? 1 : 0;
+        int enemyScore = enemyCard.GetComponent<Card>().branch == Branch.Finance ? 1 : 0;
+        Scoreboard.instance.UpdateScore(Scoreboard.instance.GetLocalScore() + localScore, Scoreboard.instance.GetEnemyScore() + enemyScore);
     }   
 
     public void GrabLocalCard()

@@ -19,6 +19,7 @@ public class Card : MonoBehaviour
     [HideInInspector] protected GameObject objRaised, objHovered, objIdle, objHidden;
     private bool isFlipped = true;
     public CardState state = CardState.Idle;
+    [SerializeField] public Branch branch;
 
     // Start is called before the first frame update
     void Start()

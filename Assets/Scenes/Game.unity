@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1907100194}
     m_Modifications:
+    - target: {fileID: 4055542236097972354, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
+      propertyPath: branch
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4210891075837935125, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
       propertyPath: m_Name
       value: Card
@@ -395,6 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 271050962}
+  - component: {fileID: 271050963}
   m_Layer: 0
   m_Name: Scoreboard
   m_TagString: Untagged
@@ -418,6 +423,22 @@ Transform:
   - {fileID: 1644897964}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &271050963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271050961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016eccba78d32604c8f36735a24c316a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orangeFlame: {fileID: 897354012}
+  blueFlame: {fileID: 597013817}
+  localScoreText: {fileID: 567266738}
+  enemyScoreText: {fileID: 1370484282}
 --- !u!1001 &281680506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -426,6 +447,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1863064865}
     m_Modifications:
+    - target: {fileID: 3654329551194969028, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
+      propertyPath: branch
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5950233964899250016, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
       propertyPath: m_Name
       value: EnemyCard
@@ -754,7 +779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.4, y: -1.6199999}
+  m_AnchoredPosition: {x: 8.76, y: -1.82}
   m_SizeDelta: {x: 2.3521, y: 1.8326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597013819
@@ -1488,7 +1513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.4, y: 1.6200001}
+  m_AnchoredPosition: {x: 8.76, y: 1.82}
   m_SizeDelta: {x: 2.3521, y: 1.8326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &897354014
@@ -1648,6 +1673,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 791542335}
     m_Modifications:
+    - target: {fileID: 3654329551194969028, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
+      propertyPath: branch
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5950233964899250016, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
       propertyPath: m_Name
       value: EnemyCard
@@ -1710,6 +1739,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2000803284}
     m_Modifications:
+    - target: {fileID: 4055542236097972354, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
+      propertyPath: branch
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4210891075837935125, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
       propertyPath: m_Name
       value: Card
@@ -1907,6 +1940,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 644384282}
     m_Modifications:
+    - target: {fileID: 2828342070153260452, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
+      propertyPath: m_text
+      value: Treasurer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654329551194969028, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
+      propertyPath: branch
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159755543809329347, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6821cc34430fe4a4492c690be41a1394, type: 3}
     - target: {fileID: 5950233964899250016, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
       propertyPath: m_Name
       value: EnemyCard
@@ -2018,6 +2063,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 879916132}
     m_Modifications:
+    - target: {fileID: 4055542236097972354, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
+      propertyPath: branch
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144357832711160132, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6821cc34430fe4a4492c690be41a1394, type: 3}
     - target: {fileID: 4210891075837935125, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
       propertyPath: m_Name
       value: Card
@@ -2061,6 +2114,10 @@ PrefabInstance:
     - target: {fileID: 6924961685309722720, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297929411120752039, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
+      propertyPath: m_text
+      value: Treasurer
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -2637,6 +2694,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 223330508}
     m_Modifications:
+    - target: {fileID: 4055542236097972354, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
+      propertyPath: branch
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4210891075837935125, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
       propertyPath: m_Name
       value: Card
@@ -2774,6 +2835,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1621045358}
     m_Modifications:
+    - target: {fileID: 3654329551194969028, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
+      propertyPath: branch
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5950233964899250016, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
       propertyPath: m_Name
       value: EnemyCard
@@ -3324,6 +3389,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 225208225}
     m_Modifications:
+    - target: {fileID: 4055542236097972354, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
+      propertyPath: branch
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4210891075837935125, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}
       propertyPath: m_Name
       value: Card
@@ -3452,6 +3521,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 116277071}
     m_Modifications:
+    - target: {fileID: 3654329551194969028, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
+      propertyPath: branch
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5950233964899250016, guid: c38100cf69eb47c4b833cc40026e775a, type: 3}
       propertyPath: m_Name
       value: EnemyCard
