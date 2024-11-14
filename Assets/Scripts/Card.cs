@@ -42,6 +42,8 @@ public class Card : MonoBehaviour
         objHovered = s.HoveredPos();
         objIdle = s.IdlePos();
         objHidden = s.HiddenPos();
+        transform.localPosition = objHidden.transform.localPosition;
+        Move(CardState.Idle);
     }
 
     public void MoveTo(Vector3 pos)
@@ -193,5 +195,11 @@ public class Card : MonoBehaviour
             yield return null;
         }
         display.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    public void StartDestroy()
+    {
+        slot.GetComponent<CardSlot>().ForgetCard();
+        Destroy(gameObject);
     }
 }

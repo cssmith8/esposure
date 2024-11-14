@@ -18,11 +18,16 @@ public class LocalHand : MonoBehaviour
             //add the child to the slots array
             slots.Add(transform.GetChild(i).gameObject);
         }
-        StartCoroutine(RevealAll());
+        
+    }
+
+    public void RevealAll()
+    {
+        StartCoroutine(RevealAllCards());
     }
 
     //coroutine to flip all cards
-    public IEnumerator RevealAll()
+    private IEnumerator RevealAllCards()
     {
         float totalTime = 0.5f;
         for (int i = 0; i < slots.Count; i++)
@@ -37,6 +42,22 @@ public class LocalHand : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public bool AssignToFreeSlot(GameObject card)
+    {
+        //for every slot
+        for (int i = 0; i < slots.Count; i++)
+        {
+            //if the slot is empty
+            if (slots[i].GetComponent<CardSlot>().card == null)
+            {
+                //assign the card to the slot
+                card.GetComponent<Card>().Assign(slots[i]);
+                return true;
+            }
+        }
+        return false;
     }
 
     public GameObject GetSelectedCard()
