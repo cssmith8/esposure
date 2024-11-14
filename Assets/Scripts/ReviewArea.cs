@@ -32,6 +32,14 @@ public class ReviewArea : MonoBehaviour
         int localScore = localCard.GetComponent<Card>().branch == Branch.Finance ? 1 : 0;
         int enemyScore = enemyCard.GetComponent<Card>().branch == Branch.Finance ? 1 : 0;
         Scoreboard.instance.UpdateScore(Scoreboard.instance.GetLocalScore() + localScore, Scoreboard.instance.GetEnemyScore() + enemyScore);
+        //destroy all cards
+        GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
+        foreach (GameObject card in cards)
+        {
+            card.GetComponent<Card>().StartDestroy();
+        }
+        //assign new cards
+        Deck.instance.DealCards();
     }   
 
     public void GrabLocalCard()

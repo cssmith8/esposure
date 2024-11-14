@@ -16,6 +16,7 @@ public class CardSlot : MonoBehaviour
     public void AssignCard(GameObject card)
     {
         this.card = card;
+        card.transform.parent = transform.GetChild(1);
     }
 
     public void ForgetCard()

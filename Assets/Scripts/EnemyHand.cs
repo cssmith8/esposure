@@ -21,6 +21,22 @@ public class EnemyHand : MonoBehaviour
         }
     }
 
+    public bool AssignToFreeSlot(GameObject card)
+    {
+        //for every slot
+        for (int i = 0; i < slots.Count; i++)
+        {
+            //if the slot is empty
+            if (slots[i].GetComponent<CardSlot>().card == null)
+            {
+                //assign the card to the slot
+                card.GetComponent<Card>().Assign(slots[i]);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public GameObject GetSelectedCard()
     {
         if (selectedCardIndex == -1)
