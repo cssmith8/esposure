@@ -1,302 +1,352 @@
 [
   {
-    "ID": "01",
+    "ID": 1,
     "RoleName": "Talent Scout",
     "Branch": "Operations",
-    "Challenge": [1, 53]
+    "ChallengeIDs": [1, 53],
+    "Description":  "Discovers and evaluates potential esports players."
   },
   {
-    "ID": "02",
+    "ID": 2,
     "RoleName": "Head Chef",
     "Branch": "Operations",
-    "Challenge": [12, 58]
+    "ChallengeIDs": [12, 58],
+    "Description":  "Prepares player’s meals."
   },
   {
-    "ID": "03",
+    "ID": 3,
     "RoleName": "Esports Analyst",
     "Branch": "Operations",
-    "Challenge": [16, 63]
+    "ChallengeIDs": [16, 63],
+    "Description":  "Analyzes gameplay data to develop strategies."
   },
   {
-    "ID": "04",
+    "ID": 4,
     "RoleName": "Facilities Manager",
     "Branch": "Operations",
-    "Challenge": [18]
+    "ChallengeIDs": [18],
+    "Description":  "Oversees maintenance and functionality of practice areas."
   },
   {
-    "ID": "05",
+    "ID": 5,
     "RoleName": "Product Manager",
     "Branch": "Operations",
-    "Challenge": [19]
+    "ChallengeIDs": [19],
+    "Description":  "Develops and manages esports organization products."
   },
   {
-    "ID": "06",
+    "ID": 6,
     "RoleName": "Nutritionist",
     "Branch": "Operations",
-    "Challenge": [23]
+    "ChallengeIDs": [23],
+    "Description":  "Creates personalized nutrition plans for players."
   },
   {
-    "ID": "07",
+    "ID": 7,
     "RoleName": "Event Manager",
     "Branch": "Operations",
-    "Challenge": [24, 72]
+    "ChallengeIDs": [24, 72],
+    "Description":  "Organizes and executes esports events."
   },
   {
-    "ID": "08",
+    "ID": 8,
     "RoleName": "Fitness Coach",
     "Branch": "Operations",
-    "Challenge": [39]
+    "ChallengeIDs": [39],
+    "Description":  "Designs personalized training programs."
   },
   {
-    "ID": "09",
+    "ID": 9,
     "RoleName": "Travel Coordinator",
     "Branch": "Operations",
-    "Challenge": [42]
+    "ChallengeIDs": [42],
+    "Description":  "Books travel arrangements, logistics for events."
   },
   {
     "ID": 10,
     "RoleName": "Equipment Manager",
     "Branch": "Operations",
-    "Challenge": [43]
+    "ChallengeIDs": [43],
+    "Description":  "Maintains and prepares equipment for players and staff."
   },
   {
     "ID": 11,
     "RoleName": "HR Manager",
     "Branch": "Operations",
-    "Challenge": [49]
+    "ChallengeIDs": [49],
+    "Description":  "Recruits talent, manages employee relations."
   },
   {
     "ID": 12,
     "RoleName": "Social Media Manager",
     "Branch": "Marketing",
-    "Challenge": [2, 52]
+    "ChallengeIDs": [2, 52],
+    "Description":  "Manages social media presence, fostering fan engagement."
   },
   {
     "ID": 13,
     "RoleName": "3D Artist/Animator",
     "Branch": "Marketing",
-    "Challenge": [6, 57]
+    "ChallengeIDs": [6, 57],
+    "Description":  "Creates 3D graphics or animations for content."
   },
   {
     "ID": 14,
     "RoleName": "Public Relations Specialist",
     "Branch": "Marketing",
-    "Challenge": [8]
+    "ChallengeIDs": [8],
+    "Description":  "Manages press inquiries, builds positive reputation."
   },
   {
     "ID": 15,
     "RoleName": "Community Manager",
     "Branch": "Marketing",
-    "Challenge": [10, 62]
+    "ChallengeIDs": [10, 62],
+    "Description":  "Fosters connections with fans, builds online community."
   },
   {
     "ID": 16,
     "RoleName": "Graphic Designer",
     "Branch": "Marketing",
-    "Challenge": [11, 67]
+    "ChallengeIDs": [11, 67],
+    "Description":  "Creates visuals for branding, marketing materials."
   },
   {
     "ID": 17,
     "RoleName": "Influencer",
     "Branch": "Marketing",
-    "Challenge": [35, 71]
+    "ChallengeIDs": [35, 71],
+    "Description":  "Promotes the organization and esports scene."
   },
   {
     "ID": 18,
     "RoleName": "Photographer",
     "Branch": "Marketing",
-    "Challenge": [36]
+    "ChallengeIDs": [36],
+    "Description":  "Captures high-quality photos of players, events."
   },
   {
     "ID": 19,
     "RoleName": "Videographer",
     "Branch": "Marketing",
-    "Challenge": [37]
+    "ChallengeIDs": [37],
+    "Description":  "Creates high-quality video content."
   },
   {
     "ID": 20,
     "RoleName": "Scriptwriter",
     "Branch": "Marketing",
-    "Challenge": [41]
+    "ChallengeIDs": [41],
+    "Description":  "Writes scripts for video content."
   },
   {
     "ID": 21,
     "RoleName": "Journalist",
     "Branch": "Marketing",
-    "Challenge": [44]
+    "ChallengeIDs": [44],
+    "Description":  "Creates positive press coverage, informs the audience."
   },
   {
     "ID": 22,
     "RoleName": "Content Creator",
     "Branch": "Marketing",
-    "Challenge": [47]
+    "ChallengeIDs": [47],
+    "Description":  "Generates engaging content to build a fanbase."
   },
   {
     "ID": 23,
     "RoleName": "Team Manager",
     "Branch": "Management",
-    "Challenge": [3, 56]
+    "ChallengeIDs": [3, 56],
+    "Description":  "Oversees team operations and player well-being."
   },
   {
     "ID": 24,
     "RoleName": "Psychologist",
     "Branch": "Management",
-    "Challenge": [4, 51]
+    "ChallengeIDs": [4, 51],
+    "Description":  "Supports player mental well-being and performance."
   },
   {
     "ID": 25,
     "RoleName": "Team Captain",
     "Branch": "Management",
-    "Challenge": [7, 61]
+    "ChallengeIDs": [7, 61],
+    "Description":  "Leads the team in-game, motivates players."
   },
   {
     "ID": 26,
     "RoleName": "Head Coach",
     "Branch": "Management",
-    "Challenge": [9]
+    "ChallengeIDs": [9],
+    "Description":  "Leads player training, develops strategies."
   },
   {
     "ID": 27,
     "RoleName": "Performance Coach",
     "Branch": "Management",
-    "Challenge": [13]
+    "ChallengeIDs": [13],
+    "Description":  "Analyzes player performance, optimizes training."
   },
   {
     "ID": 28,
     "RoleName": "General Manager",
     "Branch": "Management",
-    "Challenge": [25, 66]
+    "ChallengeIDs": [25, 66],
+    "Description":  "Oversees daily operations, manages staff."
   },
   {
     "ID": 29,
     "RoleName": "Production Manager",
     "Branch": "Management",
-    "Challenge": [38, 70]
+    "ChallengeIDs": [38, 70],
+    "Description":  "Oversees production of streams & broadcasts."
   },
   {
     "ID": 30,
     "RoleName": "Program Manager",
     "Branch": "Management",
-    "Challenge": [40]
+    "ChallengeIDs": [40],
+    "Description":  "Develops and manages custom programs for the org."
   },
   {
     "ID": 31,
     "RoleName": "Project Manager",
     "Branch": "Management",
-    "Challenge": [46, 75]
+    "ChallengeIDs": [46, 75],
+    "Description":  "Orchestrates the planning, execution, and completion of projects, ensuring they are delivered on time, within budget, and meet all requirements."
   },
   {
     "ID": 32,
     "RoleName": "Assistant Coach",
     "Branch": "Management",
-    "Challenge": [48]
+    "ChallengeIDs": [48],
+    "Description":  "Supports head coach, analyzes gameplay data."
   },
   {
     "ID": 33,
     "RoleName": "Game Designer",
     "Branch": "Technology",
-    "Challenge": [5, 55]
+    "ChallengeIDs": [5, 55],
+    "Description":  "Designs and develops esports games."
   },
   {
     "ID": 34,
     "RoleName": "Broadcast Engineer",
     "Branch": "Technology",
-    "Challenge": [14, 60]
+    "ChallengeIDs": [14, 60],
+    "Description":  "Ensures smooth technical execution of broadcasts."
   },
   {
     "ID": 35,
     "RoleName": "Cybersecurity Analyst",
     "Branch": "Technology",
-    "Challenge": [15, 65]
+    "ChallengeIDs": [15, 65],
+    "Description":  "Protects team data from cyber threats."
   },
   {
     "ID": 36,
     "RoleName": "IT Coordinator",
     "Branch": "Technology",
-    "Challenge": [17, 69]
+    "ChallengeIDs": [17, 69],
+    "Description":  "Maintains esports organization's IT infrastructure."
   },
   {
     "ID": 37,
     "RoleName": "Technical Support",
     "Branch": "Technology",
-    "Challenge": [20]
+    "ChallengeIDs": [20],
+    "Description":  "Troubleshoots technical issues for players and staff."
   },
   {
     "ID": 38,
     "RoleName": "Cloud Security Engineer",
     "Branch": "Technology",
-    "Challenge": [21]
+    "ChallengeIDs": [21],
+    "Description":  "Secures cloud-based data and infrastructure."
   },
   {
     "ID": 39,
     "RoleName": "Software Engineer",
     "Branch": "Technology",
-    "Challenge": [22, 74]
+    "ChallengeIDs": [22, 74],
+    "Description":  "Develops and maintains software applications."
   },
   {
     "ID": 40,
     "RoleName": "Lighting Technician",
     "Branch": "Technology",
-    "Challenge": [34]
+    "ChallengeIDs": [34],
+    "Description":  "Sets up and operates lighting for streams and broadcasts."
   },
   {
     "ID": 41,
     "RoleName": "Sound Engineer",
     "Branch": "Technology",
-    "Challenge": [50]
+    "ChallengeIDs": [50],
+    "Description":  "Ensures high-quality audio for streams and broadcasts."
   },
   {
     "ID": 42,
     "RoleName": "Business Developer",
     "Branch": "Finance",
-    "Challenge": [26, 54]
+    "ChallengeIDs": [26, 54],
+    "Description":  "Secures sponsorships, forges partnerships."
   },
   {
     "ID": 43,
     "RoleName": "Lawyer",
     "Branch": "Finance",
-    "Challenge": [27, 59]
+    "ChallengeIDs": [27, 59],
+    "Description":  "Handles legal contracts, protects organization's interests."
   },
   {
     "ID": 44,
     "RoleName": "Accountant",
     "Branch": "Finance",
-    "Challenge": [28, 64]
+    "ChallengeIDs": [28, 64],
+    "Description":  "Manages finances, ensures financial compliance."
   },
   {
     "ID": 45,
     "RoleName": "Customer Support",
     "Branch": "Finance",
-    "Challenge": [29, 68]
+    "ChallengeIDs": [29, 68],
+    "Description":  "Assists fans with inquiries and issues."
   },
   {
     "ID": 46,
     "RoleName": "Esports Agent",
     "Branch": "Finance",
-    "Challenge": [30, 73]
+    "ChallengeIDs": [30, 73],
+    "Description":  "Negotiates contracts, secures brand deals for players."
   },
   {
     "ID": 47,
     "RoleName": "Sponsorship Coordinator",
     "Branch": "Finance",
-    "Challenge": [31]
+    "ChallengeIDs": [31],
+    "Description":  "Secures and manages sponsorships, generating revenue and brand exposure for the team."
   },
   {
     "ID": 48,
     "RoleName": "Financial Analyst",
     "Branch": "Finance",
-    "Challenge": [32]
+    "ChallengeIDs": [32],
+    "Description":  "Analyzes financial data to identify trends, assess risks, and make strategic recommendations."
   },
   {
     "ID": 49,
     "RoleName": "Treasurer",
     "Branch": "Finance",
-    "Challenge": [33]
+    "ChallengeIDs": [33],
+    "Description":  "Manages the organization's cash flow, ensuring financial stability and overseeing all financial transactions."
   },
   {
     "ID": 50,
     "RoleName": "Auditor",
     "Branch": "Finance",
-    "Challenge": [45]
+    "ChallengeIDs": [45],
+    "Description":  "Provides independent verification of the organization's financial statements, ensuring accuracy and compliance with accounting standards."
   }
 ]
