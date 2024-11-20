@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,19 @@ public class LocalHand : MonoBehaviour
     private List<GameObject> slots = new List<GameObject>();
     [HideInInspector] public static LocalHand instance;
     private int selectedCardIndex = -1;
+    private List<Role> AllRoles = new List<Role>();
+    private CardDataManager _rm;
+
+    void Awake() {
+        _rm = CardDataManager.Instance;
+        // foreach (var role in _rm.Roles) {
+        //     Debug.Log(role.Name);
+        // }
+        //
+        // foreach (var challenge in _rm.Challenges) {
+        //     Debug.Log(challenge.Description);
+        // }
+    }
 
     // Start is called before the first frame update
     void Start()

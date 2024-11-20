@@ -1,6 +1,6 @@
 [
   {
-    "ID": "01",
+    "ID": 1,
     "Description": "A promising young player is attracting interest. Secure this talent for your organization.",
     "Role": "Talent Scout",
     "Branch": "Operations"
@@ -198,7 +198,7 @@
     "Branch": "Operations"
   },
   {
-    "ID": "02",
+    "ID": 2,
     "Description": "A recent social media post from a member of your organization has sparked outrage online. Mitigate the damage and protect your brand reputation.",
     "Role": "Social Media Manager",
     "Branch": "Marketing"
@@ -216,7 +216,7 @@
     "Branch": "Marketing"
   },
   {
-    "ID": "06",
+    "ID": 6,
     "Description": "Your game's visuals are outdated and lackluster. Improve the aesthetics to attract new players.",
     "Role": "3D Artist/Animator",
     "Branch": "Marketing"
@@ -234,7 +234,7 @@
     "Branch": "Marketing"
   },
   {
-    "ID": "08",
+    "ID": 8,
     "Description": "A major sponsor for your org makes headlines for negative reasons. Mitigate the damage to your organization's reputation.",
     "Role": "Public Relations Specialist",
     "Branch": "Marketing"
@@ -396,7 +396,7 @@
     "Branch": "Marketing"
   },
   {
-    "ID": "03",
+    "ID": 3,
     "Description": "Friction is brewing between two of your star players, potentially affecting team morale and performance. Address the situation and foster a positive team environment.",
     "Role": "Team Manager",
     "Branch": "Management"
@@ -414,7 +414,7 @@
     "Branch": "Management"
   },
   {
-    "ID": "04",
+    "ID": 4,
     "Description": "A critical player on your team has been underperforming recently. Their morale seems low, and their gameplay has suffered. Investigate the cause and develop a plan to get them back on track.",
     "Role": "Psychologist",
     "Branch": "Management"
@@ -432,7 +432,7 @@
     "Branch": "Management"
   },
   {
-    "ID": "07",
+    "ID": 7,
     "Description": "The team's morale is low after a key leader's departure. Reinvigorate the team spirit and maintain focus.",
     "Role": "Team Captain",
     "Branch": "Management"
@@ -450,7 +450,7 @@
     "Branch": "Management"
   },
   {
-    "ID": "09",
+    "ID": 9,
     "Description": "Your team's recent strategy backfired, resulting in a loss. Analyze the situation and develop a new approach.",
     "Role": "Head Coach",
     "Branch": "Management"
@@ -576,7 +576,7 @@
     "Branch": "Management"
   },
   {
-    "ID": "05",
+    "ID": 5,
     "Description": "Bugs and glitches plague the latest game update. Fix the issues and restore player trust.",
     "Role": "Game Designer",
     "Branch": "Technology"
