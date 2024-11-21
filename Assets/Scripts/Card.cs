@@ -14,7 +14,7 @@ public enum CardState
 public class Card : MonoBehaviour
 {
     public string category;
-    [SerializeField] private GameObject display;
+    [SerializeField] protected GameObject display;
     [HideInInspector] protected GameObject slot;
     [HideInInspector] protected GameObject objRaised, objHovered, objIdle, objHidden;
     private bool isFlipped = true;
@@ -22,9 +22,9 @@ public class Card : MonoBehaviour
     [SerializeField] public Branch branch;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        Assign(transform.parent.parent.gameObject);
+    void Start() {
+        EnemyHand.instance.AssignToFreeSlot(gameObject);
+        // Assign(transform.parent.parent.gameObject);
     }
 
     // Update is called once per frame

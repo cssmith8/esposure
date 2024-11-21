@@ -29,7 +29,7 @@ namespace DefaultNamespace {
               cardFamily = branch;
               foreach (DisplayManager dm in dmList)
               {
-                  dm.setImage(branch);
+                  // dm.setImage(branch);
               }
           }
 

@@ -9,43 +9,31 @@ public class DisplayManager : MonoBehaviour{
     private SpriteRenderer sr;
     
     // incredibly hacky, FOR DEMONSTRATION ONLY
-    public Sprite managementSprite;
-    public Sprite operationsSprite;
-    public Sprite marketingSprite;
-    public Sprite technologySprite;
-    public Sprite financeSprite;
-    public Sprite noneSprite;
+    private Sprite portraitSprite;
 
-    private void Start() {
+    private void Awake() {
         sr = GetComponent<SpriteRenderer>();
     }
     
-    // incredibly hacky, FOR DEMONSTRATION ONLY
-    public void setImage(Branch branch) {
-        Sprite imageToSet;
-        switch (branch)
+    public void setImage(int RoleID) {
+        string path = $"Role Card Portraits/{RoleID.ToString()}";
+        var createdSprite = Resources.Load<Sprite>(path);
+        
+        if (createdSprite != null)
         {
-            case Branch.Management:
-                imageToSet = managementSprite;
-                break;
-            case Branch.Operations:
-                imageToSet = operationsSprite;
-                break;
-            case Branch.Marketing:
-                imageToSet = marketingSprite;
-                break;
-            case Branch.Technology:
-                imageToSet = technologySprite;
-                break;
-            case Branch.Finance:
-                imageToSet = financeSprite;
-                break;
-            case Branch.None:
-            default:
-                imageToSet = noneSprite;
-                break;
+            if (sr != null)
+            {
+                sr.sprite = createdSprite;
+            }
+            else
+            {
+                Debug.Log("No SpriteRenderer found on the GameObject.");
+            }
         }
-
-        sr.sprite = imageToSet;
+        else
+        {
+            Debug.LogError($"Failed to load texture: {RoleID}");
+        }
     }
+    
 }

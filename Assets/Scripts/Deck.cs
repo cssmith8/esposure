@@ -25,21 +25,21 @@ public class Deck : MonoBehaviour
     public void DealCards()
     {
         ChallengeCard.instance.UpdateSprite(tempChallenges[Random.Range(0,tempChallenges.Count)]);
-        for (int i = 0; i < 4; i++)
-        {
-            GameObject lcyberCard = Instantiate(lcyber, transform);
-            if (!LocalHand.instance.AssignToFreeSlot(lcyberCard))
-            {
-                Destroy(lcyberCard);
-                Debug.Log("Error: No free slots");
-            }
-        }
-        GameObject ltreasurerCard = Instantiate(ltreasurer, transform);
-        if (!LocalHand.instance.AssignToFreeSlot(ltreasurerCard))
-        {
-            Destroy(ltreasurerCard);
-            Debug.Log("Error: No free slots");
-        }
+        // for (int i = 0; i < 4; i++)
+        // {
+        //     GameObject lcyberCard = Instantiate(lcyber, transform);
+        //     if (!LocalHand.instance.AssignToFreeSlot(lcyberCard))
+        //     {
+        //         Destroy(lcyberCard);
+        //         Debug.Log("Error: No free slots");
+        //     }
+        // }
+        // GameObject ltreasurerCard = Instantiate(ltreasurer, transform);
+        // if (!LocalHand.instance.AssignToFreeSlot(ltreasurerCard))
+        // {
+        //     Destroy(ltreasurerCard);
+        //     Debug.Log("Error: No free slots");
+        // }
 
         for (int i = 0; i < 4; i++)
         {
@@ -56,7 +56,7 @@ public class Deck : MonoBehaviour
             Destroy(etreasurerCard);
             Debug.Log("Error: No free slots");
         }
-        Invoke("LocalRevealAll", 1.0f);
+        // Invoke("LocalRevealAll", 1.0f);
     }
 
     public void LocalRevealAll()
