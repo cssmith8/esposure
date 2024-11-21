@@ -5,21 +5,16 @@ using UnityEngine;
 
 public class LocalHand : MonoBehaviour
 {
-    private List<GameObject> slots = new List<GameObject>();
-    [HideInInspector] public static LocalHand instance;
+    private List<CardSlot> slots = new List<CardSlot>();
+    private List<DisplayManager> dmList = new List<DisplayManager>();
+    public static LocalHand instance;
+    public GameObject CardSlotPrefab;
     private int selectedCardIndex = -1;
-    private List<Role> AllRoles = new List<Role>();
-    private CardDataManager _rm;
+    private Branch currentBranch = (Branch)1;
+    private CardDataManager _cdm;
 
     void Awake() {
-        _rm = CardDataManager.Instance;
-        // foreach (var role in _rm.Roles) {
-        //     Debug.Log(role.Name);
-        // }
-        //
-        // foreach (var challenge in _rm.Challenges) {
-        //     Debug.Log(challenge.Description);
-        // }
+        _cdm = CardDataManager.Instance;
     }
 
     // Start is called before the first frame update
@@ -27,12 +22,29 @@ public class LocalHand : MonoBehaviour
     {
         instance = this;
         //for each child
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            //add the child to the slots array
-            slots.Add(transform.GetChild(i).gameObject);
-        }
+        // for (int i = 0; i < transform.childCount; i++)
+        // {
+        //     //add the child to the slots array
+        //     slots.Add(transform.GetChild(i).gameObject);
+        // }
         
+        
+        MakeHand(currentBranch);
+    }
+
+    void MakeHand(Branch b) {
+        List<Role> cardBranch = _cdm.Roles[(int)currentBranch];
+        float gapSize = 10f / (cardBranch.Count - 1f);
+        int index = 0; 
+        foreach (var card in cardBranch) {
+            Vector3 pos = transform.position + Vector3.right * gapSize * index + Vector3.left * 5f;
+            var slotObj = Instantiate(CardSlotPrefab, pos, Quaternion.identity, transform);
+            var slot = slotObj.GetComponent<CardSlot>();
+            // var cardObj = slotObj.
+            slots.Add(slot);
+
+            index++;
+        }
     }
 
     public void RevealAll()
@@ -67,7 +79,7 @@ public class LocalHand : MonoBehaviour
             if (slots[i].GetComponent<CardSlot>().card == null)
             {
                 //assign the card to the slot
-                card.GetComponent<Card>().Assign(slots[i]);
+                card.GetComponent<Card>().Assign(slots[i].gameObject);
                 return true;
             }
         }

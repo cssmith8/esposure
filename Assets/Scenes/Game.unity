@@ -248,6 +248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardSlot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4083150689492267863, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4208899135707006994, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.5
@@ -1303,6 +1307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardSlot (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4083150689492267863, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4208899135707006994, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -1706,6 +1714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b44e692b247184da3e2842375ba722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardSlotPrefab: {fileID: 4083150689492267863, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
 --- !u!4 &1436666814
 Transform:
   m_ObjectHideFlags: 0
@@ -2469,6 +2478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardSlot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4083150689492267863, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4208899135707006994, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.5
@@ -2733,6 +2746,10 @@ PrefabInstance:
     - target: {fileID: 4083150689492267863, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
       propertyPath: m_Name
       value: CardSlot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083150689492267863, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4208899135707006994, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3024,6 +3041,10 @@ PrefabInstance:
     - target: {fileID: 4083150689492267863, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
       propertyPath: m_Name
       value: CardSlot (0)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083150689492267863, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4208899135707006994, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
       propertyPath: m_LocalPosition.x

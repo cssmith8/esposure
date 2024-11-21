@@ -21,6 +21,7 @@ public class Deck : MonoBehaviour
         
     }
 
+    // todo draw actual cards
     public void DealCards()
     {
         ChallengeCard.instance.UpdateSprite(tempChallenges[Random.Range(0,tempChallenges.Count)]);

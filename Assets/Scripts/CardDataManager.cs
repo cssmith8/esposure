@@ -54,10 +54,11 @@ public class Challenge {
 
 [Serializable]
 public class CardDataManager : MonoBehaviour {
-    public List<Role> Roles { get; private set; } = new List<Role>();
-    public List<Challenge> Challenges { get; private set; } = new List<Challenge>();
     public static CardDataManager Instance { get; private set; }
-
+    public List<List<Role>> Roles { get; private set; } = new List<List<Role>>();
+    public List<List<Challenge>> Challenges { get; private set; } = new List<List<Challenge>>();
+    public Dictionary<int, Role> RoleDict { get; private set; } = new();
+    
     public void Awake() {
         Debug.Log("CardDataManager Awakens");
         if (Instance != null && Instance != this)
@@ -89,19 +90,16 @@ public class CardDataManager : MonoBehaviour {
 
             // Deserialize into a RoleCollection object
             RoleCollection roleCollection = JsonUtility.FromJson<RoleCollection>(wrappedJson);
-
-            // Iterate over the roles and process them
+            
+            // Add lists for every branch
+            foreach (var _ in Enum.GetValues(typeof(Branch))) {
+                Roles.Add(new List<Role>());
+            }
+            
             foreach (var role in roleCollection.Roles)
             {
                 role.ParseBranch();
-                Roles.Add(role);
-
-                // Print details for verification
-                // Debug.Log($"ID: {role.ID}");
-                // Debug.Log($"Role Name: {role.Name}");
-                // Debug.Log($"Branch: {role.BranchEnum}");
-                // Debug.Log($"Challenge IDs: {string.Join(", ", role.ChallengeIDs)}");
-                // Debug.Log($"Description: {role.Description}");
+                Roles[(int)role.BranchEnum].Add(role);
             }
         }
         else
@@ -120,16 +118,15 @@ public class CardDataManager : MonoBehaviour {
             string wrappedJson = "{ \"Challenges\": " + jsonContent + " }";
             ChallengeCollection challengeCollection = JsonUtility.FromJson<ChallengeCollection>(wrappedJson);
             
+            foreach (var _ in Enum.GetValues(typeof(Branch))) {
+                Challenges.Add(new List<Challenge>());
+            }
+            
             // Iterate over the roles and process them
             foreach (var challenge in challengeCollection.Challenges)
             {
                 challenge.ParseBranch();
-                Challenges.Add(challenge);
-                // Print details for verification
-                //Debug.Log($"ID: {challenge.ID}");
-                //Debug.Log($"Description: {challenge.Description}");
-                //Debug.Log($"Challenge IDs: {challenge.Role}");
-                //Debug.Log($"Branch: {challenge.Branch}");
+                Challenges[(int)challenge.BranchEnum].Add(challenge);
             }
         }
         else
