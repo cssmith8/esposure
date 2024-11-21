@@ -36,6 +36,8 @@ public class LocalHand : MonoBehaviour
             Vector3 pos = transform.position + Vector3.right * gapSize * index + Vector3.left * 5f;
             GameObject slotObj = Instantiate(CardSlotPrefab, pos, Quaternion.identity, transform);
             CardSlot slot = slotObj.GetComponent<CardSlot>();
+            slot.index = index;
+            
             var cardObj = Instantiate(CardPrefab, slotObj.transform);
             var card = cardObj.GetComponent<LocalCard>();
             card.Assign(slotObj);
