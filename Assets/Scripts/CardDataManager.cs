@@ -55,7 +55,7 @@ public class Challenge {
 [Serializable]
 public class CardDataManager : MonoBehaviour {
     public List<Role> Roles { get; private set; } = new List<Role>();
-    public List<Challenge> Challenges { get; private set; }
+    public List<Challenge> Challenges { get; private set; } = new List<Challenge>();
     public static CardDataManager Instance { get; private set; }
 
     public void Awake() {
@@ -71,8 +71,9 @@ public class CardDataManager : MonoBehaviour {
         
         Debug.Log("Import starts");
         ImportRoles();
+        Debug.Log("Role import finished");
         ImportChallenges();
-        Debug.Log("Import ends");
+        Debug.Log("Challenge import finished");
     }
 
     private void ImportRoles()
@@ -96,11 +97,11 @@ public class CardDataManager : MonoBehaviour {
                 Roles.Add(role);
 
                 // Print details for verification
-                Debug.Log($"ID: {role.ID}");
-                Debug.Log($"Role Name: {role.Name}");
-                Debug.Log($"Branch: {role.BranchEnum}");
-                Debug.Log($"Challenge IDs: {string.Join(", ", role.ChallengeIDs)}");
-                Debug.Log($"Description: {role.Description}");
+                // Debug.Log($"ID: {role.ID}");
+                // Debug.Log($"Role Name: {role.Name}");
+                // Debug.Log($"Branch: {role.BranchEnum}");
+                // Debug.Log($"Challenge IDs: {string.Join(", ", role.ChallengeIDs)}");
+                // Debug.Log($"Description: {role.Description}");
             }
         }
         else
@@ -116,23 +117,19 @@ public class CardDataManager : MonoBehaviour {
         if (File.Exists(jsonPath))
         {
             string jsonContent = File.ReadAllText(jsonPath);
-    
-            // Wrap the JSON content in an artificial array wrapper
-            string wrappedJson = "{ \"Roles\": " + jsonContent + " }";
-    
-            // Deserialize into a RoleCollection object
-            Challenges = JsonUtility.FromJson<List<Challenge>>(wrappedJson);
-    
+            string wrappedJson = "{ \"Challenges\": " + jsonContent + " }";
+            ChallengeCollection challengeCollection = JsonUtility.FromJson<ChallengeCollection>(wrappedJson);
+            
             // Iterate over the roles and process them
-            foreach (Challenge challenge in Challenges)
+            foreach (var challenge in challengeCollection.Challenges)
             {
                 challenge.ParseBranch();
-    
+                Challenges.Add(challenge);
                 // Print details for verification
                 Debug.Log($"ID: {challenge.ID}");
                 Debug.Log($"Description: {challenge.Description}");
                 Debug.Log($"Challenge IDs: {challenge.Role}");
-                Debug.Log($"Branch: {challenge.BranchEnum}");
+                Debug.Log($"Branch: {challenge.Branch}");
             }
         }
         else
@@ -146,4 +143,10 @@ public class CardDataManager : MonoBehaviour {
 public class RoleCollection
 {
     public Role[] Roles;
+}
+
+[Serializable]
+public class ChallengeCollection
+{
+    public Challenge[] Challenges;
 }
