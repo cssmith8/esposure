@@ -6,6 +6,19 @@ public class ChallengeCard : MonoBehaviour
 {
     private Vector3 originalSize = new Vector3(0.2f, 0.2f, 0.2f);  // Original scale of the object
     private Vector3 bigSize = new Vector3(0.4f, 0.4f, 0.4f);  // Scale when hovered
+    private SpriteRenderer spriteRenderer;
+    [HideInInspector] public static ChallengeCard instance;
+
+    private void Start()
+    {
+        instance = this;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void UpdateSprite(Sprite sprite)
+    {
+        spriteRenderer.sprite = sprite;
+    }
 
     // This is called when the mouse enters the collider
     private void OnMouseEnter()
@@ -20,6 +33,8 @@ public class ChallengeCard : MonoBehaviour
         StopCoroutine(Grow());  // Stop the grow coroutine if running
         StartCoroutine(Shrink());  // Start the shrink coroutine
     }
+
+
 
     private IEnumerator Grow()
     {

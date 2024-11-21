@@ -6,6 +6,7 @@ public class Deck : MonoBehaviour
 {
     [HideInInspector] public static Deck instance;
     [SerializeField] private GameObject lcyber, ltreasurer, ecyber, etreasurer;
+    [SerializeField] private List<Sprite> tempChallenges = new List<Sprite>();
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class Deck : MonoBehaviour
 
     public void DealCards()
     {
+        ChallengeCard.instance.UpdateSprite(tempChallenges[Random.Range(0,tempChallenges.Count)]);
         for (int i = 0; i < 4; i++)
         {
             GameObject lcyberCard = Instantiate(lcyber, transform);

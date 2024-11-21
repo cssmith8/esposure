@@ -71,9 +71,9 @@ public class CardDataManager : MonoBehaviour {
         
         Debug.Log("Import starts");
         ImportRoles();
-        Debug.Log("Role import finished");
+        Debug.Log("Role import finished: " + Roles.Count);
         ImportChallenges();
-        Debug.Log("Challenge import finished");
+        Debug.Log("Challenge import finished: " + Challenges.Count);
     }
 
     private void ImportRoles()
@@ -126,10 +126,10 @@ public class CardDataManager : MonoBehaviour {
                 challenge.ParseBranch();
                 Challenges.Add(challenge);
                 // Print details for verification
-                Debug.Log($"ID: {challenge.ID}");
-                Debug.Log($"Description: {challenge.Description}");
-                Debug.Log($"Challenge IDs: {challenge.Role}");
-                Debug.Log($"Branch: {challenge.Branch}");
+                //Debug.Log($"ID: {challenge.ID}");
+                //Debug.Log($"Description: {challenge.Description}");
+                //Debug.Log($"Challenge IDs: {challenge.Role}");
+                //Debug.Log($"Branch: {challenge.Branch}");
             }
         }
         else
