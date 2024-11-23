@@ -55,15 +55,15 @@ public class Challenge {
 [Serializable]
 public class CardDataManager : MonoBehaviour {
     public static CardDataManager Instance { get; private set; }
-    public List<List<Role>> Roles { get; private set; } = new List<List<Role>>();
-    public List<List<Challenge>> Challenges { get; private set; } = new List<List<Challenge>>();
+    public List<List<Role>> Roles { get; private set; } = new();
+    public List<List<Challenge>> Challenges { get; private set; } = new();
     public Dictionary<int, Role> RoleDict { get; private set; } = new();
     
     public void Awake() {
         Debug.Log("CardDataManager Awakens");
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple GameManager instances detected. Destroying duplicate.");
+            Debug.LogWarning("Multiple CardDataManager instances detected. Destroying duplicate.");
             Destroy(gameObject);
             return;
         }
@@ -72,9 +72,9 @@ public class CardDataManager : MonoBehaviour {
         
         Debug.Log("Import starts");
         ImportRoles();
-        Debug.Log("Role import finished: " + Roles.Count);
+        Debug.Log("Role import finished. Number of role families:  " + Roles.Count);
         ImportChallenges();
-        Debug.Log("Challenge import finished: " + Challenges.Count);
+        Debug.Log("Challenge import finished. Number of challenge families: " + Challenges.Count);
     }
 
     private void ImportRoles()

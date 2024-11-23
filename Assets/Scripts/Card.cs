@@ -79,8 +79,7 @@ public class Card : MonoBehaviour
         }
         
     }
-
-    //coroutine to move the card up
+    
     protected IEnumerator MoveToTarget(Vector3 target, float t = 0.2f)
     {
         Vector3 initial = transform.localPosition;
@@ -141,20 +140,18 @@ public class Card : MonoBehaviour
     public IEnumerator FlipR()
     {
         float time = 0;
-        float fliptime = 0.2f;
+        float fliptime = 0.2f; // half of total flip time
         while (time < fliptime) {
             display.transform.localScale = new Vector3(1 - time / fliptime, 1, 1);
             time += Time.deltaTime;
             yield return null;
         }
         display.transform.localScale = new Vector3(0, 1, 1);
-        foreach (Transform child in display.transform)
-        {
+        foreach (Transform child in display.transform) {
             child.gameObject.SetActive(true);
         }
         time = 0;
-        while (time < fliptime)
-        {
+        while (time < fliptime) {
             display.transform.localScale = new Vector3(time / fliptime, 1, 1);
             time += Time.deltaTime;
             yield return null;

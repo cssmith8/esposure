@@ -1,19 +1,12 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DisplayManager : MonoBehaviour{
     [HideInInspector] public int RoleID;
     public Role Role; // leave unimplemented for now
-    [HideInInspector] public Sprite img; // leave unimplemented for now
-    private SpriteRenderer sr;
-    
-    // incredibly hacky, FOR DEMONSTRATION ONLY
-    private Sprite portraitSprite;
-
-    private void Awake() {
-        sr = GetComponent<SpriteRenderer>();
-    }
+    [SerializeField] private SpriteRenderer portraitSprite;
     
     public void setImage(int RoleID) {
         string path = $"Role Card Portraits/{RoleID.ToString()}";
@@ -21,9 +14,10 @@ public class DisplayManager : MonoBehaviour{
         
         if (createdSprite != null)
         {
-            if (sr != null)
+            if (portraitSprite != null)
             {
-                sr.sprite = createdSprite;
+                portraitSprite.sprite = createdSprite;
+                Debug.Log($"Portrait sprite set to: {RoleID}");
             }
             else
             {
