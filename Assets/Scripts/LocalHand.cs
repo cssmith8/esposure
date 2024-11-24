@@ -6,16 +6,14 @@ using UnityEngine;
 public class LocalHand : MonoBehaviour {
     private List<CardSlot> slotList = new();
     private List<LocalCard> cardList = new();
-    private List<DisplayManager> portraitList = new();
-    private List<DisplayManager> titleList = new();
-    private List<DisplayManager> descriptionList = new();
+    private List<DisplayManager> displayManagerList = new();
     public static LocalHand instance;
     public GameObject CardSlotPrefab;
     public GameObject CardPrefab;
     private int selectedCardIndex = -1;
     private Branch currentBranch = (Branch)1;
     private CardDataManager _cdm;
-    private Stack<LocalCard> cardStack; // determines card order for appearance
+    private Stack<LocalCard> cardStack;
 
     void Awake() {
         _cdm = CardDataManager.Instance;
@@ -33,7 +31,7 @@ public class LocalHand : MonoBehaviour {
         SetHand(currentBranch);
         Invoke("RevealAll", 1.0f);
     }
-
+    
     private void SetHand(Branch b) {
         DestroyHand();
         MakeHand(b);
@@ -43,7 +41,7 @@ public class LocalHand : MonoBehaviour {
         List<Role> cardBranch = _cdm.Roles[(int)b];
         float gapSize = 10f / (cardBranch.Count - 1f);
         int index = 0;
-        foreach (var cardInfo in cardBranch) {
+        foreach (Role cardInfo in cardBranch) {
             Vector3 pos = transform.position + Vector3.right * gapSize * index + Vector3.left * 5f;
             GameObject slotObj = Instantiate(CardSlotPrefab, pos, Quaternion.identity, transform);
             CardSlot slot = slotObj.GetComponent<CardSlot>();
@@ -53,11 +51,11 @@ public class LocalHand : MonoBehaviour {
             var card = cardObj.GetComponent<LocalCard>();
             card.Assign(slotObj);
             var dm = card.PortraitManager;
-            dm.setImage(cardInfo.ID);
+            dm.setRole(cardInfo);
 
             slotList.Add(slot);
             cardList.Add(card);
-            portraitList.Add(dm);
+            displayManagerList.Add(dm);
             index++;
         }
     }
@@ -68,7 +66,7 @@ public class LocalHand : MonoBehaviour {
         }
         slotList.Clear();
         cardList.Clear();
-        portraitList.Clear();
+        displayManagerList.Clear();
     }
 
     public void incrementBranch() {

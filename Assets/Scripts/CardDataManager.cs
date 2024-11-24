@@ -28,15 +28,28 @@ public class Role
     public void ParseBranch() {
         BranchEnum = Enum.TryParse(Branch.Trim(), true, out Branch parsedBranch) ? parsedBranch : global::Branch.None;
     }
+    
+    public override string ToString() {
+        // Convert the list of ChallengeIDs to a comma-separated string
+        string challenges = ChallengeIDs != null ? string.Join(", ", ChallengeIDs) : "None";
+
+        return $"ID: {ID}\n" +
+               $"Name: {Name}\n" +
+               $"Branch (string): {Branch}\n" +
+               $"BranchEnum: {BranchEnum}\n" +
+               $"Description: {Description}\n" +
+               $"ChallengeIDs: {challenges}";
+    }
 }
 
 [Serializable]
-public class Challenge {
+public class Challenge
+{
     public int ID;
     public string Description;
     public string Role;
-    public string Branch; // Keep Branch as string for JSON deserialization
-    public Branch BranchEnum; // Enum for easier usage within Unity
+    public string Branch;
+    public Branch BranchEnum;
 
     // Method to parse the Branch string into an enum
     public void ParseBranch()
@@ -49,6 +62,15 @@ public class Challenge {
         {
             BranchEnum = global::Branch.None; // Default if parsing fails
         }
+    }
+    
+    public override string ToString()
+    {
+        return $"ID: {ID}\n" +
+               $"Description: {Description}\n" +
+               $"Role: {Role}\n" +
+               $"Branch (string): {Branch}\n" +
+               $"BranchEnum: {BranchEnum}";
     }
 }
 

@@ -1,14 +1,33 @@
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class DisplayManager : MonoBehaviour{
-    [HideInInspector] public int RoleID;
-    public Role Role; // leave unimplemented for now
+    // [HideInInspector] public int roleID;
     [SerializeField] private SpriteRenderer portraitSprite;
-    
+    [SerializeField] private GameObject textCanvas;
+    [SerializeField] private GameObject nameTextObj;
+    [SerializeField] private GameObject descriptionTexObj; 
+    private TextMeshProUGUI nameText; 
+    private TextMeshProUGUI descriptionText;
+
+    private void Awake() {
+        nameText = nameTextObj.GetComponent<TextMeshProUGUI>();
+        descriptionText = descriptionTexObj.GetComponent<TextMeshProUGUI>();
+        portraitSprite.gameObject.SetActive(false);
+        textCanvas.SetActive(false);
+    }
+
+    public void setRole(Role role) {
+        setImage(role.ID);
+        setName(role.Name);
+        setDescription(role.Description);
+    }
+
     public void setImage(int RoleID) {
+        // roleID = RoleID;
         string path = $"Role Card Portraits/{RoleID.ToString()}";
         var createdSprite = Resources.Load<Sprite>(path);
         
@@ -17,7 +36,7 @@ public class DisplayManager : MonoBehaviour{
             if (portraitSprite != null)
             {
                 portraitSprite.sprite = createdSprite;
-                Debug.Log($"Portrait sprite set to: {RoleID}");
+                // Debug.Log($"Portrait sprite set to: {RoleID}");
             }
             else
             {
@@ -29,5 +48,14 @@ public class DisplayManager : MonoBehaviour{
             Debug.LogError($"Failed to load texture: {RoleID}");
         }
     }
+
+    public void setName(string name) {
+        name = name.ToUpper();
+        nameText.text = name;
+    }
     
+    public void setDescription(string desc) {
+        desc = desc.ToUpper();
+        descriptionText.text = desc;
+    }
 }
