@@ -59,8 +59,8 @@ public class Deck : MonoBehaviour
         // Invoke("LocalRevealAll", 1.0f);
     }
 
-    public void LocalRevealAll()
-    {
-        LocalHand.instance.RevealAll();
-    }
+    // public void LocalRevealAll()
+    // {
+    //     LocalHand.instance.RevealAll();
+    // }
 }

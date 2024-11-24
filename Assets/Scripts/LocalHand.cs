@@ -2,21 +2,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class LocalHand : MonoBehaviour {
+    // References
     private List<CardSlot> slotList = new();
     private List<LocalCard> cardList = new();
     private List<DisplayManager> displayManagerList = new();
+    private CardDataManager _cdm;
+    
+    // Self
     public static LocalHand instance;
+    private int selectedCardIndex = -1;
+    private Branch currentBranch = (Branch) 1;
+    [SerializeField] private float cardZGapSize = 0.1f;
+    [SerializeField] private float handWidth = 10f;
+    private Vector3 anchorPos;
+    private List<int> slotOrder = new();
+    private Boolean isRevealOver = false;
+
+    // Prefabs
     public GameObject CardSlotPrefab;
     public GameObject CardPrefab;
-    private int selectedCardIndex = -1;
-    private Branch currentBranch = (Branch)1;
-    private CardDataManager _cdm;
-    private Stack<LocalCard> cardStack;
-
+    
     void Awake() {
         _cdm = CardDataManager.Instance;
+        anchorPos = transform.position;
     }
 
     void Start() {
@@ -29,28 +40,35 @@ public class LocalHand : MonoBehaviour {
         instance = this;
 
         SetHand(currentBranch);
-        Invoke("RevealAll", 1.0f);
+        Invoke(nameof(RevealAll), 1.0f);
     }
     
     private void SetHand(Branch b) {
-        DestroyHand();
+        if (slotList.Count != 0) {
+            DestroyHand();
+            isRevealOver = true;
+        }
         MakeHand(b);
     }
 
     private void MakeHand(Branch b) {
         List<Role> cardBranch = _cdm.Roles[(int)b];
-        float gapSize = 10f / (cardBranch.Count - 1f);
+        float gapSize = handWidth / (cardBranch.Count - 1f);
         int index = 0;
         foreach (Role cardInfo in cardBranch) {
-            Vector3 pos = transform.position + Vector3.right * gapSize * index + Vector3.left * 5f;
+            Vector3 pos = anchorPos + Vector3.right * gapSize * index; // Set horizontal pos starting at 0
+            pos += Vector3.left * handWidth/2; // Move left so hand center is at 0
+            pos += Vector3.back * index * cardZGapSize; // Set forward/back pos
             GameObject slotObj = Instantiate(CardSlotPrefab, pos, Quaternion.identity, transform);
             CardSlot slot = slotObj.GetComponent<CardSlot>();
             slot.index = index;
-
+            slotOrder.Add(index);
+            
             var cardObj = Instantiate(CardPrefab, slotObj.transform);
             var card = cardObj.GetComponent<LocalCard>();
             card.Assign(slotObj);
             var dm = card.PortraitManager;
+            dm.startActive = isRevealOver;
             dm.setRole(cardInfo);
 
             slotList.Add(slot);
@@ -61,10 +79,9 @@ public class LocalHand : MonoBehaviour {
     }
 
     private void DestroyHand() {
-        foreach (var slot in slotList) {
-            Destroy(slot.gameObject);
-        }
+        foreach (var slot in slotList) Destroy(slot.gameObject);
         slotList.Clear();
+        slotOrder.Clear();
         cardList.Clear();
         displayManagerList.Clear();
     }
@@ -81,6 +98,25 @@ public class LocalHand : MonoBehaviour {
         SetHand(currentBranch);
     }
 
+    public void MoveCardToTop(int cardIndex) {
+        int slotIndexToMove = slotOrder.FindIndex(x => x == cardIndex);
+        slotOrder.RemoveAt(slotIndexToMove);
+        slotOrder.Add(cardIndex);
+        RepositionCards();
+    }
+    
+    private void RepositionCards() {
+        int index = 0;
+        foreach (int slotIndex in slotOrder) {
+            CardSlot slot = slotList[slotIndex];
+            Transform slotTransform = slot.transform;
+            Vector3 currentPosition = slotTransform.position;
+            currentPosition.z = anchorPos.z + -1 * index * cardZGapSize;
+            slotTransform.position = currentPosition;
+            index++;
+        }
+    }
+
     public void RevealAll() {
         StartCoroutine(RevealAllCards());
     }
@@ -94,26 +130,12 @@ public class LocalHand : MonoBehaviour {
         }
     }
 
-    public bool AssignToFreeSlot(GameObject card) {
-        //for every slot
-        for (int i = 0; i < slotList.Count; i++) {
-            //if the slot is empty
-            if (slotList[i].GetComponent<CardSlot>().card == null) {
-                //assign the card to the slot
-                card.GetComponent<Card>().Assign(slotList[i].gameObject);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public GameObject GetSelectedCard() {
         if (selectedCardIndex == -1) {
-            return slotList[0].GetComponent<CardSlot>().card;
+            return slotList[0].card;
         }
 
-        return slotList[selectedCardIndex].GetComponent<CardSlot>().card;
+        return slotList[selectedCardIndex].card;
     }
 
     public void HideUnselected() {
@@ -122,8 +144,8 @@ public class LocalHand : MonoBehaviour {
             //if the slot is the selected card
             if (i != selectedCardIndex) {
                 //hide the card
-                if (slotList[i].GetComponent<CardSlot>().card != null) {
-                    slotList[i].GetComponent<CardSlot>().card.GetComponent<Card>().Hide();
+                if (slotList[i].card != null) {
+                    slotList[i].card.GetComponent<Card>().Hide();
                 }
             }
         }
@@ -132,8 +154,8 @@ public class LocalHand : MonoBehaviour {
     public void SelectCard(int index) {
         for (int i = 0; i < slotList.Count; i++) {
             if (i != index) {
-                if (slotList[i].GetComponent<CardSlot>().card != null) {
-                    slotList[i].GetComponent<CardSlot>().card.GetComponent<Card>().Deselect();
+                if (slotList[i].card != null) {
+                    slotList[i].card.GetComponent<Card>().Deselect();
                 }
             }
         }

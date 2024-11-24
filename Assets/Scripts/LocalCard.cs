@@ -7,10 +7,12 @@ using CS = CardState;
 
 public class LocalCard : Card {
     public DisplayManager PortraitManager { get; private set; }
+    public int CardIndex { get; private set; }
+    private LocalHand Hand;
     
     void Awake() { 
         PortraitManager = display.GetComponent<DisplayManager>();
-        // Assign(transform.parent.gameObject);
+        Hand = LocalHand.instance;
     }
     
     public void AssignCard(GameObject card) {
@@ -26,7 +28,7 @@ public class LocalCard : Card {
         if (state == CS.Idle)
         {
             Move(CS.Hovered);
-            
+            Hand.MoveCardToTop(HandIndex);
         }
     }
 

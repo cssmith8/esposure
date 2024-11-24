@@ -12,12 +12,15 @@ public class DisplayManager : MonoBehaviour{
     [SerializeField] private GameObject descriptionTexObj; 
     private TextMeshProUGUI nameText; 
     private TextMeshProUGUI descriptionText;
-
+    public Boolean startActive;
     private void Awake() {
         nameText = nameTextObj.GetComponent<TextMeshProUGUI>();
         descriptionText = descriptionTexObj.GetComponent<TextMeshProUGUI>();
-        portraitSprite.gameObject.SetActive(false);
-        textCanvas.SetActive(false);
+    }
+
+    private void Start() {
+        portraitSprite.gameObject.SetActive(startActive);
+        textCanvas.SetActive(startActive);
     }
 
     public void setRole(Role role) {
@@ -25,7 +28,7 @@ public class DisplayManager : MonoBehaviour{
         setName(role.Name);
         setDescription(role.Description);
     }
-
+    
     public void setImage(int RoleID) {
         // roleID = RoleID;
         string path = $"Role Card Portraits/{RoleID.ToString()}";
@@ -48,7 +51,7 @@ public class DisplayManager : MonoBehaviour{
             Debug.LogError($"Failed to load texture: {RoleID}");
         }
     }
-
+    
     public void setName(string name) {
         name = name.ToUpper();
         nameText.text = name;

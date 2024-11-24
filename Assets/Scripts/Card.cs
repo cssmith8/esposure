@@ -13,11 +13,11 @@ public enum CardState
 
 public class Card : MonoBehaviour
 {
-    public string category;
     [SerializeField] protected GameObject display;
     [HideInInspector] protected GameObject slot;
     [HideInInspector] protected GameObject objRaised, objHovered, objIdle, objHidden;
     private bool isFlipped = true;
+    public int HandIndex { get; private set; }
     public CardState state = CardState.Idle;
     [SerializeField] public Branch branch;
 
@@ -38,6 +38,7 @@ public class Card : MonoBehaviour
         this.slot = slot;
         CardSlot s = slot.GetComponent<CardSlot>();
         s.AssignCard(gameObject);
+        HandIndex = s.index;
         objRaised = s.RaisedPos();
         objHovered = s.HoveredPos();
         objIdle = s.IdlePos();
