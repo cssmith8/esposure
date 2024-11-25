@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b44e692b247184da3e2842375ba722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardZGapSize: 0.1
+  handWidth: 12
   CardSlotPrefab: {fileID: 4083150689492267863, guid: 107d2ac66fea02f498fd8a0081e58905, type: 3}
   CardPrefab: {fileID: 4210891075837935125, guid: 2d939b10f2bd8bf44bcec6da3ca12624, type: 3}

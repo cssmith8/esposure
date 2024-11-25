@@ -1,26 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
-using static UnityEngine.GraphicsBuffer;
 using CS = CardState;
 
 public class LocalCard : Card {
-    public DisplayManager PortraitManager { get; private set; }
-    public int CardIndex { get; private set; }
-    private LocalHand Hand;
     
-    void Awake() { 
-        PortraitManager = display.GetComponent<DisplayManager>();
+    public override void Awake() { 
+        DM = display.GetComponent<DisplayManager>();
         Hand = LocalHand.instance;
-    }
-    
-    public void AssignCard(GameObject card) {
-        
-    }
-
-    void Start() {
-        
     }
     
     void OnMouseEnter()
@@ -44,15 +28,12 @@ public class LocalCard : Card {
     {
         if (state == CS.Hovered)
         {
-            LocalHand.instance.SelectCard(slot.GetComponent<CardSlot>().index);
+            Hand.SelectCard(slot.GetComponent<CardSlot>().index);
             //Flip();
             Select();
-            return;
-        }
-        if (state == CS.Selected)
+        } else if (state == CS.Selected)
         {
             Deselect();
-            return;
         }
     }
 }

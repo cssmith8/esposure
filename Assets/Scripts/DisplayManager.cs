@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 public class DisplayManager : MonoBehaviour{
-    // [HideInInspector] public int roleID;
     [SerializeField] private SpriteRenderer portraitSprite;
     [SerializeField] private GameObject textCanvas;
     [SerializeField] private GameObject nameTextObj;

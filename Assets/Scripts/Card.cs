@@ -11,26 +11,25 @@ public enum CardState
     Hidden = 3,
 }
 
-public class Card : MonoBehaviour
+public abstract class Card : MonoBehaviour
 {
     [SerializeField] protected GameObject display;
-    [HideInInspector] protected GameObject slot;
-    [HideInInspector] protected GameObject objRaised, objHovered, objIdle, objHidden;
-    private bool isFlipped = true;
-    public int HandIndex { get; private set; }
+    protected GameObject slot;
+    protected GameObject objRaised, objHovered, objIdle, objHidden;
+    protected bool isFlipped = true;
+    public int HandIndex { get; protected set; }
     public CardState state = CardState.Idle;
     [SerializeField] public Branch branch;
+    public DisplayManager DM { get; protected set; }
+    public int RoleID { get; protected set; }
+    protected Hand Hand;
 
-    // Start is called before the first frame update
-    void Start() {
-        EnemyHand.instance.AssignToFreeSlot(gameObject);
-        // Assign(transform.parent.parent.gameObject);
+    public virtual void Awake() { 
+        DM = display.GetComponent<DisplayManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void SetRoleID(int roleID) {
+        RoleID = roleID;
     }
 
     public void Assign(GameObject slot)
@@ -128,7 +127,7 @@ public class Card : MonoBehaviour
         }
     }
 
-    public void FlipReveal()
+    public virtual void FlipReveal()
     {
         if (isFlipped)
         {

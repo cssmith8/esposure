@@ -19,12 +19,12 @@ public class Role
 {
     public int ID;
     public string Name;
-    public string Branch; // Temporarily store the branch as a string
+    public string Branch;
     public string Description;
     public List<int> ChallengeIDs;
     public Branch BranchEnum;
 
-    // Converts the Role into one with properly parsed enums
+    // Converts string Branch to BranchEnum
     public void ParseBranch() {
         BranchEnum = Enum.TryParse(Branch.Trim(), true, out Branch parsedBranch) ? parsedBranch : global::Branch.None;
     }
@@ -80,6 +80,7 @@ public class CardDataManager : MonoBehaviour {
     public List<List<Role>> Roles { get; private set; } = new();
     public List<List<Challenge>> Challenges { get; private set; } = new();
     public Dictionary<int, Role> RoleDict { get; private set; } = new();
+    public Dictionary<int, Challenge> ChallengeDict { get; private set; } = new();
     
     public void Awake() {
         Debug.Log("CardDataManager Awakens");
@@ -89,54 +90,68 @@ public class CardDataManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
+
+        ImportData();
         
+        //DontDestroyOnLoad(gameObject);
+    }
+
+    private void ImportData() {
         Debug.Log("Import starts");
         ImportRoles();
         Debug.Log("Role import finished. Number of role families:  " + Roles.Count);
         ImportChallenges();
         Debug.Log("Challenge import finished. Number of challenge families: " + Challenges.Count);
     }
-
-    private void ImportRoles()
+    
+    private void ClearAllData()
     {
-        string jsonPath = Application.dataPath + "/RoleCards/Data/RoleData.json";
+        Roles.ForEach(roleList => roleList.Clear());
+        Roles.Clear();
+        Challenges.ForEach(challengeList => challengeList.Clear());
+        Challenges.Clear();
+        RoleDict.Clear();
+        ChallengeDict.Clear();
+        Debug.Log("Role and challenge data cleared.");
+    }
 
-        if (File.Exists(jsonPath))
-        {
-            string jsonContent = File.ReadAllText(jsonPath);
+    public void ReimportData() {
+        ClearAllData();
+        ImportData();
+    }
 
-            // Wrap the JSON content in an artificial array wrapper
+    private void ImportRoles() {
+        string jsonPath = $"Role Card Data/RoleData";
+        TextAsset jsonFile = Resources.Load<TextAsset>(jsonPath);
+
+        if (jsonFile != null) {
+            string jsonContent = jsonFile.text;
             string wrappedJson = "{ \"Roles\": " + jsonContent + " }";
-
-            // Deserialize into a RoleCollection object
             RoleCollection roleCollection = JsonUtility.FromJson<RoleCollection>(wrappedJson);
             
-            // Add lists for every branch
             foreach (var _ in Enum.GetValues(typeof(Branch))) {
                 Roles.Add(new List<Role>());
             }
-            
-            foreach (var role in roleCollection.Roles)
-            {
+
+            foreach (var role in roleCollection.Roles) {
                 role.ParseBranch();
                 Roles[(int)role.BranchEnum].Add(role);
+                RoleDict.Add(role.ID, role);
             }
         }
-        else
-        {
-            Debug.LogError("JSON file not found: " + jsonPath);
+        else {
+            Debug.LogError($"JSON file not found: {jsonPath}");
         }
     }
+
+    private void ImportChallenges() {
+        string jsonPath = $"Role Card Data/ChallengeData";
+        TextAsset jsonFile = Resources.Load<TextAsset>(jsonPath);
     
-    private void ImportChallenges()
-    {
-        string jsonPath = Application.dataPath + "/RoleCards/Data/ChallengeData.json";
-    
-        if (File.Exists(jsonPath))
+        if (jsonFile != null)
         {
-            string jsonContent = File.ReadAllText(jsonPath);
+            string jsonContent = jsonFile.text;
             string wrappedJson = "{ \"Challenges\": " + jsonContent + " }";
             ChallengeCollection challengeCollection = JsonUtility.FromJson<ChallengeCollection>(wrappedJson);
             
@@ -149,11 +164,12 @@ public class CardDataManager : MonoBehaviour {
             {
                 challenge.ParseBranch();
                 Challenges[(int)challenge.BranchEnum].Add(challenge);
+                ChallengeDict.Add(challenge.ID, challenge);
             }
         }
         else
         {
-            Debug.LogError("JSON file not found: " + jsonPath);
+            Debug.LogError($"JSON file not found: {jsonPath}");
         }
     }
 }
