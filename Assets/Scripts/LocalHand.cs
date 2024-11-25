@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -58,7 +59,6 @@ public class LocalHand : MonoBehaviour {
         foreach (Role cardInfo in cardBranch) {
             Vector3 pos = anchorPos + Vector3.right * gapSize * index; // Set horizontal pos starting at 0
             pos += Vector3.left * handWidth/2; // Move left so hand center is at 0
-            pos += Vector3.back * index * cardZGapSize; // Set forward/back pos
             GameObject slotObj = Instantiate(CardSlotPrefab, pos, Quaternion.identity, transform);
             CardSlot slot = slotObj.GetComponent<CardSlot>();
             slot.index = index;
@@ -76,6 +76,8 @@ public class LocalHand : MonoBehaviour {
             displayManagerList.Add(dm);
             index++;
         }
+        
+        MoveCardToTop(0);
     }
 
     private void DestroyHand() {
@@ -97,24 +99,39 @@ public class LocalHand : MonoBehaviour {
         currentBranch = branchToSet;
         SetHand(currentBranch);
     }
-
+    
     public void MoveCardToTop(int cardIndex) {
-        int slotIndexToMove = slotOrder.FindIndex(x => x == cardIndex);
-        slotOrder.RemoveAt(slotIndexToMove);
-        slotOrder.Add(cardIndex);
-        RepositionCards();
+        slotOrder[cardIndex] = 0;
+        int highestNum = 0;
+        
+        for (int i = cardIndex - 1, distance = 1; i >= 0; i--, distance++) {
+            slotOrder[i] = distance;
+            if (distance > highestNum) highestNum = distance;
+        }
+
+        for (int i = cardIndex + 1, distance = 1; i < slotOrder.Count; i++, distance++) {
+            slotOrder[i] = distance;
+            if (distance > highestNum) highestNum = distance;
+        }
+
+        RepositionCards(highestNum);
     }
     
-    private void RepositionCards() {
+    // highestNum is the highest number in slotOrder
+    private void RepositionCards(int highestNum) {
         int index = 0;
-        foreach (int slotIndex in slotOrder) {
-            CardSlot slot = slotList[slotIndex];
+        foreach (int zOrder in slotOrder) {
+            CardSlot slot = slotList[index];
             Transform slotTransform = slot.transform;
             Vector3 currentPosition = slotTransform.position;
-            currentPosition.z = anchorPos.z + -1 * index * cardZGapSize;
+            currentPosition.z = anchorPos.z - highestNum * cardZGapSize + zOrder * cardZGapSize;
             slotTransform.position = currentPosition;
             index++;
         }
+    }
+    
+    private void RepositionCards() {
+        RepositionCards(slotOrder.Max());
     }
 
     public void RevealAll() {
