@@ -12,14 +12,14 @@ public class Deck : MonoBehaviour
     private EnemyHand enemyHand;
 
     void Start() {
-        localHand = LocalHand.instance;
-        enemyHand = EnemyHand.instance;
         instance = this;
         Invoke(nameof(DealCards), 0.5f);
     }
     
     public void DealCards()
     {
+        localHand = LocalHand.instance;
+        enemyHand = EnemyHand.instance;
         ChallengeCard.instance.UpdateSprite(tempChallenges[Random.Range(0,tempChallenges.Count)]);
         localHand.OnGameStart();
         enemyHand.OnGameStart();

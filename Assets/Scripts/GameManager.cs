@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void Submit()
     {
-        pv.RPC("OnEnemySubmit", enemypv.Owner);
+        int localid = LocalHand.instance.GetSelectedCard().GetComponent<LocalCard>().RoleID;
+        pv.RPC("OnEnemySubmit", enemypv.Owner, localid);
         //update the room variable
         Hashtable hash = PhotonNetwork.CurrentRoom.CustomProperties;
         hash["submitted"] = (int) hash["submitted"] + 1;
@@ -70,8 +71,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void OnEnemySubmit()
+    private void OnEnemySubmit(int localid)
     {
+        EnemyHand.instance.TransformCards(localid);
         EnemyHand.instance.HideUnselected();
     }
 

@@ -34,13 +34,19 @@ public class ReviewArea : MonoBehaviour
         Scoreboard.instance.UpdateScore(Scoreboard.instance.GetLocalScore() + localScore, Scoreboard.instance.GetEnemyScore() + enemyScore);
         //destroy all cards
         GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
+        Debug.Log(cards.Length);
         foreach (GameObject card in cards)
         {
             card.GetComponent<Card>().StartDestroy();
         }
         //assign new cards
-        Deck.instance.DealCards();
+        Invoke(nameof(Deal), 0.5f);
     }   
+
+    private void Deal()
+    {
+        Deck.instance.DealCards();
+    }
 
     public void GrabLocalCard()
     {
