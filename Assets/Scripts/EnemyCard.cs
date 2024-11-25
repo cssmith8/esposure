@@ -15,6 +15,7 @@ public class EnemyCard : Card {
 
     public void SetCardRoleByID(int roleID) {
         SetCardRole(CDM.RoleDict[roleID]);
+        roleID = RoleID;
     }
     
     public void SetCardRole(Role role) {
@@ -25,7 +26,7 @@ public class EnemyCard : Card {
     {
         if (isFlipped)
         {
-            SetCardRoleByID(RoleID);
+            //SetCardRoleByID(RoleID);
             StartCoroutine(FlipR());
             isFlipped = false;
         }
