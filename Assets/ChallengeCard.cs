@@ -8,11 +8,21 @@ public class ChallengeCard : MonoBehaviour
     private Vector3 bigSize = new Vector3(0.4f, 0.4f, 0.4f);  // Scale when hovered
     private SpriteRenderer spriteRenderer;
     [HideInInspector] public static ChallengeCard instance;
+    [SerializeField] private GameObject temp;
 
     private void Start()
     {
         instance = this;
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        //on r key press
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Instantiate(temp, new Vector3(0, 0, -2), Quaternion.identity);
+        }
     }
 
     public void UpdateSprite(Sprite sprite)
