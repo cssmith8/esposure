@@ -90,4 +90,21 @@ public class GameManager : MonoBehaviourPunCallbacks
         */
         ReviewArea.instance.ReviewSequence();
     }
+
+    public void AddEnemyScore(int points)
+    {
+        pv.RPC("EnemyScore", enemypv.Owner, points);
+    }
+
+    [PunRPC]
+    private void EnemyScore(int points)
+    {
+        if (points == 1)
+        {
+            Instantiate(ReviewArea.instance.enemyPlusOne, ReviewArea.instance.GetEnemyPosition(), Quaternion.identity);
+        } else if (points == 2)
+        {
+            Instantiate(ReviewArea.instance.enemyPlusTwo, ReviewArea.instance.GetEnemyPosition(), Quaternion.identity);
+        }
+    }
 }

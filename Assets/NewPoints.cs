@@ -20,6 +20,7 @@ public class NewPoints : MonoBehaviour
             target = Scoreboard.instance.GetEnemyTarget();
         }
         transform.eulerAngles = new Vector3(0, 0, 90);
+        transform.position = new Vector3(transform.position.x, transform.position.y, -2);
         StartCoroutine(Move());
     }
 
@@ -30,34 +31,39 @@ public class NewPoints : MonoBehaviour
         Vector3 initialPosition = transform.position;
 
         Vector3 midScale = new Vector3(0.5f, 0.5f, 0.5f);
-        Vector3 midEuler = new Vector3(0, 0, 0);
+        Vector3 midEuler = new Vector3(0, 0, -2);
         Vector3 midPosition = transform.position;
 
         Vector3 finalScale = new Vector3(0, 0, 0);
         Vector3 finalEuler = new Vector3(0, 0, -160);
         Vector3 finalPosition = target.position;
+        finalPosition.z = -2;
 
         float elapsedTime = 0;
+        float speed1 = 4f;
         // move from initial to mid, eased using a sine function over 1 second
-        while (elapsedTime < 0.5)
+        while (elapsedTime < 1f / speed1)
         {
-            transform.localScale = Vector3.Lerp(initialScale, midScale, Mathf.Sin(elapsedTime * 2 * Mathf.PI / 2));
-            transform.eulerAngles = Vector3.Lerp(initialEuler, midEuler, Mathf.Sin(elapsedTime * 2 * Mathf.PI / 2));
-            transform.position = Vector3.Lerp(initialPosition, midPosition, Mathf.Sin(elapsedTime * 2 * Mathf.PI / 2));
+            float progress = Mathf.Sin(elapsedTime * speed1 * Mathf.PI / 2);
+            transform.localScale = Vector3.Lerp(initialScale, midScale, progress);
+            transform.eulerAngles = Vector3.Lerp(initialEuler, midEuler, progress);
+            transform.position = Vector3.Lerp(initialPosition, midPosition, progress);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         //wait
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
 
         // move from mid to final, eased using a sine function over 1 second
         elapsedTime = 0;
-        while (elapsedTime < 1)
+        float speed2 = 1.5f;
+        while (elapsedTime < 1 / speed2)
         {
-            transform.localScale = Vector3.Lerp(midScale, finalScale, Mathf.Sin(1 - ((1 - elapsedTime) * Mathf.PI / 2)));
-            transform.eulerAngles = Vector3.Lerp(midEuler, finalEuler, Mathf.Sin(1 - ((1 - elapsedTime) * Mathf.PI / 2)));
-            transform.position = Vector3.Lerp(midPosition, finalPosition, Mathf.Sin(1 - ((1 - elapsedTime) * Mathf.PI / 2)));
+            float progress = Mathf.Pow(Mathf.Sin((1 / speed2 - elapsedTime) * speed2 * Mathf.PI / 2), 2);
+            transform.localScale = Vector3.Lerp(finalScale, midScale, progress);
+            transform.eulerAngles = Vector3.Lerp(finalEuler, midEuler, progress);
+            transform.position = Vector3.Lerp(finalPosition, midPosition, progress);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -66,6 +72,13 @@ public class NewPoints : MonoBehaviour
 
     private void OnEnd()
     {
+        if (local)
+        {
+            Scoreboard.instance.AddToLocal(points);
+        } else
+        {
+            Scoreboard.instance.AddToEnemy(points);
+        }
         Destroy(gameObject);
     }
 }

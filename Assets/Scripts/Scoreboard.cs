@@ -38,6 +38,20 @@ public class Scoreboard : MonoBehaviour
         UpdateFlames();
     }
 
+    public void AddToLocal(int amount)
+    {
+        localScore += amount;
+        localScoreText.GetComponent<TMP_Text>().text = localScore.ToString();
+        UpdateFlames();
+    }
+
+    public void AddToEnemy(int amount)
+    {
+        enemyScore += amount;
+        enemyScoreText.GetComponent<TMP_Text>().text = enemyScore.ToString();
+        UpdateFlames();
+    }
+
     private void UpdateFlames()
     {
         orangeFlame.SetActive(localScore < enemyScore);

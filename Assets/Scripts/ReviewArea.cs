@@ -9,6 +9,8 @@ public class ReviewArea : MonoBehaviour
 
     [HideInInspector] private GameObject localCard, enemyCard;
 
+    [SerializeField] public GameObject enemyPlusOne, enemyPlusTwo, localPlusOne, localPlusTwo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +31,19 @@ public class ReviewArea : MonoBehaviour
         yield return new WaitForSeconds(1f);
         enemyCard.GetComponent<Card>().FlipReveal();
         yield return new WaitForSeconds(1f);
-        int localScore = localCard.GetComponent<Card>().branch == Branch.Finance ? 1 : 0;
-        int enemyScore = enemyCard.GetComponent<Card>().branch == Branch.Finance ? 1 : 0;
-        Scoreboard.instance.UpdateScore(Scoreboard.instance.GetLocalScore() + localScore, Scoreboard.instance.GetEnemyScore() + enemyScore);
+        int localScore = localCard.GetComponent<Card>().branch == Branch.Finance ? 2 : 1;
+        int enemyScore = enemyCard.GetComponent<Card>().branch == Branch.Finance ? 2 : 1;
+        if (localScore == 2)
+        {
+            Instantiate(localPlusTwo, localSlot.transform);
+        } else
+        {
+            Instantiate(localPlusOne, localSlot.transform);
+        }
+        if (enemyScore > 0)
+        {
+            GameManager.localInstance.AddEnemyScore(enemyScore);
+        }
         //destroy all cards
         GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
         Debug.Log(cards.Length);
@@ -60,6 +72,11 @@ public class ReviewArea : MonoBehaviour
         enemyCard = EnemyHand.instance.GetSelectedCard();
         enemyCard.transform.SetParent(transform);
         enemyCard.GetComponent<Card>().MoveTo(enemySlot.transform.localPosition);
+    }
+
+    public Vector3 GetEnemyPosition()
+    {
+        return enemySlot.transform.position;
     }
 
 }

@@ -16,15 +16,6 @@ public class ChallengeCard : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
-    {
-        //on r key press
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Instantiate(temp, new Vector3(0, 0, -2), Quaternion.identity);
-        }
-    }
-
     public void UpdateSprite(Sprite sprite)
     {
         spriteRenderer.sprite = sprite;
