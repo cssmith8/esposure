@@ -8,6 +8,7 @@ public class ChallengeCard : MonoBehaviour
     private Vector3 bigSize = new Vector3(0.4f, 0.4f, 0.4f);  // Scale when hovered
     private SpriteRenderer spriteRenderer;
     [HideInInspector] public static ChallengeCard instance;
+    [SerializeField] private GameObject temp;
 
     private void Start()
     {

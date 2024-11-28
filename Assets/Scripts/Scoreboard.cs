@@ -10,6 +10,7 @@ public class Scoreboard : MonoBehaviour
     [SerializeField] private GameObject orangeFlame, blueFlame;
     [SerializeField] private GameObject localScoreText, enemyScoreText;
     private int localScore = 0, enemyScore = 0;
+    [SerializeField] private Transform localTarget, enemyTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +38,33 @@ public class Scoreboard : MonoBehaviour
         UpdateFlames();
     }
 
+    public void AddToLocal(int amount)
+    {
+        localScore += amount;
+        localScoreText.GetComponent<TMP_Text>().text = localScore.ToString();
+        UpdateFlames();
+    }
+
+    public void AddToEnemy(int amount)
+    {
+        enemyScore += amount;
+        enemyScoreText.GetComponent<TMP_Text>().text = enemyScore.ToString();
+        UpdateFlames();
+    }
+
     private void UpdateFlames()
     {
         orangeFlame.SetActive(localScore < enemyScore);
         blueFlame.SetActive(localScore > enemyScore);
+    }
+
+    public Transform GetLocalTarget()
+    {
+        return localTarget;
+    }
+
+    public Transform GetEnemyTarget()
+    {
+        return enemyTarget;
     }
 }
