@@ -6,7 +6,7 @@ public class CardSlot : MonoBehaviour
 {
     [SerializeField] private GameObject objRaised, objHovered, objIdle, objHidden;
     [HideInInspector] public GameObject card = null;
-    public int index;
+    [SerializeField] public int index = 0;
 
     public GameObject RaisedPos() { return objRaised; }
     public GameObject HoveredPos() { return objHovered; }
