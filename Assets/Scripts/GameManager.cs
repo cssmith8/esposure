@@ -45,13 +45,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         pv.RPC("EnemySelect", enemypv.Owner, index);
     }
-
-    [PunRPC]
-    private void EnemySelect(int index)
-    {
-        EnemyHand.instance.SelectCard(index);
-    }
-
+    
     public void Submit()
     {
         int localid = LocalHand.instance.GetSelectedCard().GetComponent<LocalCard>().RoleID;
@@ -70,6 +64,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
     }
 
+    [PunRPC]
+    private void EnemySelect(int index)
+    {
+        EnemyHand.instance.SelectCard(index);
+    }
+    
     [PunRPC]
     private void OnEnemySubmit(int localid)
     {

@@ -48,7 +48,7 @@ public abstract class Card : MonoBehaviour
 
     public void MoveTo(Vector3 pos)
     {
-        StopCoroutine("MoveToTarget");
+        StopCoroutine(nameof(MoveToTarget));
         StartCoroutine(MoveToTarget(pos, 0.5f));
     }
 
@@ -57,22 +57,22 @@ public abstract class Card : MonoBehaviour
         switch (target)
         {
             case CardState.Idle:
-                StopCoroutine("MoveToTarget");
+                StopCoroutine(nameof(MoveToTarget));
                 StartCoroutine(MoveToTarget(objIdle.transform.localPosition));
                 state = CardState.Idle;
                 break;
             case CardState.Hovered:
-                StopCoroutine("MoveToTarget");
+                StopCoroutine(nameof(MoveToTarget));
                 StartCoroutine(MoveToTarget(objHovered.transform.localPosition));
                 state = CardState.Hovered;
                 break;
             case CardState.Selected:
-                StopCoroutine("MoveToTarget");
+                StopCoroutine(nameof(MoveToTarget));
                 StartCoroutine(MoveToTarget(objRaised.transform.localPosition));
                 state = CardState.Selected;
                 break;
             case CardState.Hidden:
-                StopCoroutine("MoveToTarget");
+                StopCoroutine(nameof(MoveToTarget));
                 StartCoroutine(MoveToTarget(objHidden.transform.localPosition));
                 state = CardState.Hidden;
                 break;

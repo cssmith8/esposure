@@ -26,7 +26,7 @@ public class EnemyCard : Card {
     {
         if (isFlipped)
         {
-            //SetCardRoleByID(RoleID);
+            SetCardRoleByID(RoleID);
             StartCoroutine(FlipR());
             isFlipped = false;
         }

@@ -10,19 +10,19 @@ public abstract class Hand : MonoBehaviour {
     // Prefabs
     public GameObject CardSlotPrefab;
     public GameObject CardPrefab;
-    protected CardDataManager _cdm;
-    protected Vector3 anchorPos;
-    protected List<LocalCard> cardList = new();
-    protected Branch currentBranch = (Branch)1;
-    protected List<DisplayManager> displayManagerList = new();
-    protected bool isRevealOver = false;
-
+    
     // Self
     protected int selectedCardIndex = -1;
+    protected Vector3 anchorPos;
+    protected Branch currentBranch = (Branch)1;
+    protected bool isRevealOver = false;
 
     // References
+    protected CardDataManager _cdm;
     protected List<CardSlot> slotList = new();
     protected List<int> slotOrder = new();
+    protected List<Card> cardList = new();
+    protected List<DisplayManager> displayManagerList = new();
 
     public virtual void Awake() {
         
@@ -51,7 +51,9 @@ public abstract class Hand : MonoBehaviour {
             slotOrder.Add(index);
 
             var cardObj = Instantiate(CardPrefab, slotObj.transform);
-            var card = cardObj.GetComponent<LocalCard>();
+            var card = cardObj.GetComponent<Card>();
+            // Debug.Log(cardInfo.ID);
+            // Debug.Log(card);
             card.SetRoleID(cardInfo.ID);
             card.Assign(slotObj);
             var dm = card.DM;
@@ -115,9 +117,10 @@ public abstract class Hand : MonoBehaviour {
     }
 
     public GameObject GetSelectedCard() {
-        if (selectedCardIndex == -1) return slotList[0].card;
+        if (selectedCardIndex < 0) return cardList[0].gameObject;
 
-        return slotList[selectedCardIndex].card;
+        Debug.Log($"Returning card at index {Mathf.Min(selectedCardIndex, cardList.Count - 1)}");
+        return cardList[Mathf.Min(selectedCardIndex, cardList.Count - 1)].gameObject;
     }
 
     public void HideUnselected() {
@@ -131,14 +134,16 @@ public abstract class Hand : MonoBehaviour {
     }
 
     public void SelectCard(int index) {
-        for (var i = 0; i < cardList.Count; i++)
-            if (i != index)
+        for (var i = 0; i < cardList.Count; i++) {
+            if (i != index) {
                 cardList[i].Deselect();
-
+            }
+        }
+        
         selectedCardIndex = index;
-        GameManager.localInstance.SelectCard(index);
+        GameManager.localInstance.SelectCard(selectedCardIndex);
     }
-
+    
     public void DeselectCard() {
         selectedCardIndex = -1;
     }
