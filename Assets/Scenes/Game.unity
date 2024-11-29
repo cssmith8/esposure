@@ -988,7 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalColor: {r: 0.25490198, g: 0.81960785, b: 0.25490198, a: 1}
-  hoverColor: {r: 0.22659309, g: 0.7169812, b: 0.22659309, a: 1}
+  hoverColor: {r: 0.23713954, g: 0.6886792, b: 0.23713954, a: 1}
   clickColor: {r: 0.25490198, g: 0.81960785, b: 0.25490198, a: 1}
   onClick:
     m_PersistentCalls:
@@ -1005,7 +1005,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  ButtonSprites: []
+  ButtonSprites:
+  - {fileID: 705807353}
+  - {fileID: 1185697651}
 --- !u!61 &765346819
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1060,7 +1062,7 @@ Transform:
   m_GameObject: {fileID: 765346816}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.041, y: -2.092, z: 0}
+  m_LocalPosition: {x: 8.041, y: -2.092, z: -3}
   m_LocalScale: {x: 0.86742, y: 0.86742, z: 0.86742}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1219,7 +1221,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  ButtonSprites: []
+  ButtonSprites:
+  - {fileID: 871990287}
 --- !u!212 &871990287
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2153,7 +2156,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  ButtonSprites: []
+  ButtonSprites:
+  - {fileID: 1632017969}
 --- !u!212 &1632017969
 SpriteRenderer:
   m_ObjectHideFlags: 0
