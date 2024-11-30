@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -79,6 +80,8 @@ public class CardDataManager : MonoBehaviour {
     public static CardDataManager Instance { get; private set; }
     public List<List<Role>> Roles { get; private set; } = new();
     public List<List<Challenge>> Challenges { get; private set; } = new();
+    // All challenges in a single list
+    public List<Challenge> ChallengesFlatList { get; private set; } = new();
     public Dictionary<int, Role> RoleDict { get; private set; } = new();
     public Dictionary<int, Challenge> ChallengeDict { get; private set; } = new();
     
@@ -94,7 +97,7 @@ public class CardDataManager : MonoBehaviour {
 
         ImportData();
         
-        //DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
     }
 
     private void ImportData() {
@@ -103,6 +106,7 @@ public class CardDataManager : MonoBehaviour {
         Debug.Log("Role import finished. Number of role families:  " + Roles.Count);
         ImportChallenges();
         Debug.Log("Challenge import finished. Number of challenge families: " + Challenges.Count);
+        Debug.Log("Flat challenge import finished. Number of challenges in flat list: " + ChallengesFlatList.Count);
     }
     
     private void ClearAllData()
@@ -111,6 +115,7 @@ public class CardDataManager : MonoBehaviour {
         Roles.Clear();
         Challenges.ForEach(challengeList => challengeList.Clear());
         Challenges.Clear();
+        ChallengesFlatList.Clear();
         RoleDict.Clear();
         ChallengeDict.Clear();
         Debug.Log("Role and challenge data cleared.");
@@ -133,7 +138,7 @@ public class CardDataManager : MonoBehaviour {
             foreach (var _ in Enum.GetValues(typeof(Branch))) {
                 Roles.Add(new List<Role>());
             }
-
+            
             foreach (var role in roleCollection.Roles) {
                 role.ParseBranch();
                 Roles[(int)role.BranchEnum].Add(role);
@@ -165,7 +170,11 @@ public class CardDataManager : MonoBehaviour {
                 challenge.ParseBranch();
                 Challenges[(int)challenge.BranchEnum].Add(challenge);
                 ChallengeDict.Add(challenge.ID, challenge);
+                
+                ChallengesFlatList.Add(challenge);
             }
+            
+            Debug.Log($"{ChallengesFlatList.Count} challenges in flat list found.");
         }
         else
         {

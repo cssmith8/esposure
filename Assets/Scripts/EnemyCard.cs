@@ -15,7 +15,7 @@ public class EnemyCard : Card {
 
     public void SetCardRoleByID(int roleID) {
         SetCardRole(CDM.RoleDict[roleID]);
-        roleID = RoleID;
+        RoleID = roleID;
     }
     
     public void SetCardRole(Role role) {

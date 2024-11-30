@@ -25,13 +25,13 @@ public class EnemyHand : Hand
     }
     
     public override void OnGameStart() {
-        Debug.Log("Enemy hand game start");
+        // Debug.Log("Enemy hand game start");
         for (int i = 0; i < 8; i++)
         {
             GameObject slotObj = transform.GetChild(i).gameObject;
             var cardObj = Instantiate(CardPrefab, slotObj.transform);
             //log the cards position
-            Debug.Log("Card position: " + cardObj.transform.position);
+            // Debug.Log("Card position: " + cardObj.transform.position);
             slotObj.GetComponent<CardSlot>().AssignCard(cardObj);
             cardObj.GetComponent<EnemyCard>().Assign(slotObj);
 

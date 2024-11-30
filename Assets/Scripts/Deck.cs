@@ -10,6 +10,7 @@ public class Deck : MonoBehaviour
     [SerializeField] private List<Sprite> tempChallenges = new();
     private LocalHand localHand;
     private EnemyHand enemyHand;
+    private ChallengeCard _challengeCard;
 
     void Start() {
         instance = this;
@@ -20,8 +21,10 @@ public class Deck : MonoBehaviour
     {
         localHand = LocalHand.instance;
         enemyHand = EnemyHand.instance;
-        ChallengeCard.instance.UpdateSprite(tempChallenges[Random.Range(0,tempChallenges.Count)]);
+        _challengeCard = ChallengeCard.instance;
+        
         localHand.OnGameStart();
         enemyHand.OnGameStart();
+        _challengeCard.SetToRandomChallenge();
     }
 }

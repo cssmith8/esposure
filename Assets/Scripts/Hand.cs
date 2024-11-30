@@ -10,19 +10,19 @@ public abstract class Hand : MonoBehaviour {
     // Prefabs
     public GameObject CardSlotPrefab;
     public GameObject CardPrefab;
-    protected CardDataManager _cdm;
-    protected Vector3 anchorPos;
-    protected List<LocalCard> cardList = new();
-    protected Branch currentBranch = (Branch)1;
-    protected List<DisplayManager> displayManagerList = new();
-    protected bool isRevealOver = false;
-
+    
     // Self
+    protected Vector3 anchorPos;
+    protected Branch currentBranch = (Branch)1;
     protected int selectedCardIndex = -1;
+    protected List<int> slotOrder = new();
 
     // References
+    protected CardDataManager _cdm;
     protected List<CardSlot> slotList = new();
-    protected List<int> slotOrder = new();
+    protected List<LocalCard> cardList = new();
+    protected List<DisplayManager> displayManagerList = new();
+    
 
     public virtual void Awake() {
         
@@ -36,9 +36,9 @@ public abstract class Hand : MonoBehaviour {
     public virtual void OnGameStart() {
     }
 
-    protected void MakeHand(Branch b) {
+    protected void MakeHand(Branch b, bool showCards) {
         _cdm = CardDataManager.Instance;
-        Debug.Log($"_cdm: {_cdm}, CardSlotPrefab: {CardSlotPrefab}, CardPrefab: {CardPrefab}");
+        // Debug.Log($"_cdm: {_cdm}, CardSlotPrefab: {CardSlotPrefab}, CardPrefab: {CardPrefab}");
         var cardBranch = _cdm.Roles[(int)b];
         var gapSize = handWidth / (cardBranch.Count - 1f);
         var index = 0;
@@ -55,7 +55,7 @@ public abstract class Hand : MonoBehaviour {
             card.SetRoleID(cardInfo.ID);
             card.Assign(slotObj);
             var dm = card.DM;
-            dm.startActive = isRevealOver;
+            dm.startActive = showCards;
             dm.setRole(cardInfo);
 
             slotList.Add(slot);

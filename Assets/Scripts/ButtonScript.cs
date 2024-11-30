@@ -19,18 +19,15 @@ public class Button : MonoBehaviour {
     private void Start() {
         changeColor(normalColor);
     }
-
-    // This is called when the mouse enters the collider
+    
     private void OnMouseEnter() {
         changeColor(hoverColor);
     }
-
-    // This is called when the mouse exits the collider
+    
     private void OnMouseExit() {
         changeColor(normalColor);
     }
-
-    // This is called when the mouse clicks on the collider
+    
     private void OnMouseDown() {
         changeColor(clickColor);
         onClick?.Invoke();

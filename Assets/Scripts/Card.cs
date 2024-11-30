@@ -13,16 +13,20 @@ public enum CardState
 
 public abstract class Card : MonoBehaviour
 {
+    // References
     [SerializeField] protected GameObject display;
+    public DisplayManager DM { get; protected set; }
     protected GameObject slot;
     protected GameObject objRaised, objHovered, objIdle, objHidden;
+    protected Hand Hand;
+    
+    // Self
     protected bool isFlipped = true;
-    public int HandIndex { get; protected set; }
+    public int HandIndex { get; protected set; } // horizontal index in the hand order
     public CardState state = CardState.Idle;
     [SerializeField] public Branch branch;
-    public DisplayManager DM { get; protected set; }
     public int RoleID { get; protected set; }
-    protected Hand Hand;
+    
 
     public virtual void Awake() { 
         DM = display.GetComponent<DisplayManager>();
