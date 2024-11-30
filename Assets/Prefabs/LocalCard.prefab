@@ -556,14 +556,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5658765401377026422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 919abf17e78f47068a3cd57ce57bb75c, type: 3}
+  m_Script: {fileID: 11500000, guid: 318afe756b64b5c41be153a02a4b007c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   portraitSprite: {fileID: 2339211893656331486}
   textCanvas: {fileID: 951822183747401677}
   nameTextObj: {fileID: 2528253703981482961}
   descriptionTexObj: {fileID: 5720034272542271461}
-  startActive: 0
+  startActive: 1
 --- !u!1 &5720034272542271461
 GameObject:
   m_ObjectHideFlags: 0
