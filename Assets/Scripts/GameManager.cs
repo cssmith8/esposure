@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [HideInInspector] private static PhotonView pv;
     [HideInInspector] private static PhotonView enemypv;
 
+    [HideInInspector] public bool submitted = false;
+
     [HideInInspector] public static bool playerOne = true;
 
     void Start()
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void Submit()
     {
+        submitted = true;
         int localid = LocalHand.instance.GetSelectedCard().GetComponent<LocalCard>().RoleID;
         pv.RPC("OnEnemySubmit", enemypv.Owner, localid);
         //update the room variable

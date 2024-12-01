@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class RoomPanel : MonoBehaviour
 {
     [SerializeField] private GameObject startButtonObject;
+    private TMP_Text waitingText;
     private TMP_Text roomCode;
     private PhotonView pv;
 
@@ -22,6 +23,7 @@ public class RoomPanel : MonoBehaviour
             gameObject.SetActive(false);
         }
 
+        waitingText = transform.GetChild(0).GetChild(1).gameObject.GetComponent<TMP_Text>();
         roomCode = transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMP_Text>();
 
         roomCode.text = "Join code: " + PhotonNetwork.CurrentRoom.Name;
@@ -50,6 +52,7 @@ public class RoomPanel : MonoBehaviour
         //if there are 2 players in the room
         if (PhotonNetwork.PlayerList.Length == 2)
         {
+            waitingText.text = "Beginning Game ...";
             if (PhotonNetwork.IsMasterClient)
             {
                 Invoke("StartButtonPress", 1f);

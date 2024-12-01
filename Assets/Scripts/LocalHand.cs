@@ -29,6 +29,11 @@ public class LocalHand : Hand {
         SetHand(currentBranch, false);
         Invoke(nameof(RevealAll), 1.0f);
     }
+
+    public int GetSelectedCardIndex()
+    {
+        return selectedCardIndex;
+    }
     
     private void SetHand(Branch b, bool showCards) {
         if (slotList.Count != 0) {

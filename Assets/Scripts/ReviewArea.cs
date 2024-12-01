@@ -27,6 +27,11 @@ public class ReviewArea : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         enemyCardObj.GetComponent<Card>().FlipReveal();
         yield return new WaitForSeconds(1f);
+
+        //reveal correct card
+        string role = ChallengeCard.instance.currentChallenge.Role;
+
+        //yield return new WaitForSeconds(2f);
         
         var currentChallenge = challengeCard.currentChallenge;
         

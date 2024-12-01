@@ -26,5 +26,7 @@ public class Deck : MonoBehaviour
         localHand.OnGameStart();
         enemyHand.OnGameStart();
         _challengeCard.UpdateCard();
+
+        GameManager.localInstance.submitted = false;
     }
 }
