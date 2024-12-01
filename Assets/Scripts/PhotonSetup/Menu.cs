@@ -11,7 +11,7 @@ public class Menu : MonoBehaviourPunCallbacks
     private int creationAttempts = 0;
     [SerializeField] private GameObject gameCanvas;
     [SerializeField] private TMP_InputField inputField;
-    [SerializeField] private TMP_InputField usernameField;
+    [SerializeField] private GameObject joinButton;
     //public string roomName = "";
 
     // Start is called before the first frame update
@@ -84,14 +84,9 @@ public class Menu : MonoBehaviourPunCallbacks
         
     }
 
-    public void OnUsernameUpdate()
+    public void onInputFieldUpdate()
     {
-        string name = usernameField.text;
-        if (name == "" || name == " ")
-        {
-            name = "Player";
-        }
-        PhotonNetwork.NickName = name;
+        joinButton.GetComponent<UnityEngine.UI.Button>().interactable = inputField.text.Length > 0;
     }
 
     private string CreateRandomName(int length = 3)

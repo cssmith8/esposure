@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class RoomPanel : MonoBehaviour
 {
-    private TMP_Text playerList;
     [SerializeField] private GameObject startButtonObject;
     private TMP_Text roomCode;
     private PhotonView pv;
@@ -23,36 +22,39 @@ public class RoomPanel : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        playerList = transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMP_Text>();
-        roomCode = transform.GetChild(0).GetChild(1).gameObject.GetComponent<TMP_Text>();
+        roomCode = transform.GetChild(0).GetChild(0).gameObject.GetComponent<TMP_Text>();
 
-        roomCode.text = "Code: " + PhotonNetwork.CurrentRoom.Name;
+        roomCode.text = "Join code: " + PhotonNetwork.CurrentRoom.Name;
 
         InvokeRepeating("UpdatePlayerList", 0, 1);
-        InvokeRepeating("ShowStartButton", 0, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //if esc key is pressed
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PhotonNetwork.LeaveRoom();
+            SceneManager.LoadScene("Join Menu");
+        }
+        //if 0 key is pressed
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            startButtonObject.SetActive(true);
+        }
     }
 
     void UpdatePlayerList()
     {
-        playerList.text = "Players:\n";
-
-        foreach (Photon.Realtime.Player pl in PhotonNetwork.PlayerList)
+        //if there are 2 players in the room
+        if (PhotonNetwork.PlayerList.Length == 2)
         {
-            // body of foreach loop
-            playerList.text += pl.NickName;
-            playerList.text += "\n";
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Invoke("StartButtonPress", 1f);
+            }
         }
-    }
-
-    private void ShowStartButton()
-    {
-        startButtonObject.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public void StartButtonPress()
