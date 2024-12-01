@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Photon.Pun;
 
 public class ChallengeCard : MonoBehaviour
 {
@@ -36,15 +37,12 @@ public class ChallengeCard : MonoBehaviour
         _cdm = CardDataManager.Instance;
     }
 
-    public void UpdateCard(int newChallengeIndex) {
+    public void UpdateCard() {
+        var hash = PhotonNetwork.CurrentRoom.CustomProperties;
+        int newChallengeIndex = (int)hash["challenge"];
         currentChallenge = _cdm.ChallengesFlatList[newChallengeIndex];
         descriptionText.text = currentChallenge.Description.ToUpper();
         Debug.Log($"Challenge card answer is {currentChallenge.Role}");
-    }
-    
-    public void SetToRandomChallenge() {
-        int newChallengeIndex = Random.Range(0, _cdm.ChallengesFlatList.Count);
-        UpdateCard(newChallengeIndex);
     }
     
     private void OnMouseEnter()

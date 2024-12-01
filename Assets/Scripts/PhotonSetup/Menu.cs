@@ -41,6 +41,7 @@ public class Menu : MonoBehaviourPunCallbacks
     {
         var hash = PhotonNetwork.CurrentRoom.CustomProperties;
         hash["started"] = false;
+        hash["challenge"] = Random.Range(0, 150);
         hash["submitted"] = 0;
         PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
     }

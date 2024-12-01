@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             pv.RPC("OnBothSubmit", RpcTarget.All);
             hash["submitted"] = 0;
-
+            hash["challenge"] = Random.Range(0, 150);
         }
         PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
     }
