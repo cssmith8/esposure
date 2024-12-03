@@ -200,7 +200,11 @@ public abstract class Card : MonoBehaviour
 
     public void StartDestroy()
     {
-        slot.GetComponent<CardSlot>().ForgetCard();
+        if (slot)
+        {
+            CardSlot real = slot.GetComponent<CardSlot>();
+            if (real) real.ForgetCard();
+        }
         Destroy(gameObject);
     }
 }

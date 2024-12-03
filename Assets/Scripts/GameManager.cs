@@ -40,7 +40,16 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-
+        //if esc key is pressed
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!GetComponent<PhotonView>().IsMine) return;
+            //quit the game
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
+            //quit the application
+            Application.Quit();
+        }
     }
 
     public void SelectCard(int index)

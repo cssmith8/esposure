@@ -100,6 +100,22 @@ public class CardDataManager : MonoBehaviour {
         // DontDestroyOnLoad(gameObject);
     }
 
+    //get role id from role name
+    public int GetRoleID(string roleName)
+    {
+        foreach (var roleList in Roles)
+        {
+            foreach (var role in roleList)
+            {
+                if (role.Name == roleName)
+                {
+                    return role.ID;
+                }
+            }
+        }
+        return -1;
+    }
+
     private void ImportData() {
         Debug.Log("Import starts");
         ImportRoles();

@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class ReviewArea : MonoBehaviour {
     [HideInInspector] public static ReviewArea instance;
-    [SerializeField] private GameObject localSlot, enemySlot;
+    [SerializeField] private GameObject localSlot, enemySlot, correctSpawn, correctTarget;
     [SerializeField] public GameObject enemyPlusOne, enemyPlusTwo, localPlusOne, localPlusTwo;
     private CardDataManager _cdm;
     private ChallengeCard challengeCard;
     [HideInInspector] private GameObject localCardObj, enemyCardObj;
+    [SerializeField] private GameObject correctCard;
 
     private void Start() {
         instance = this;
@@ -30,8 +31,26 @@ public class ReviewArea : MonoBehaviour {
 
         //reveal correct card
         string role = ChallengeCard.instance.currentChallenge.Role;
+        GameObject go = Instantiate(correctCard, correctSpawn.transform.position, Quaternion.identity);
+        go.GetComponent<EnemyCard>().SetCardRoleByID(_cdm.GetRoleID(role));
+        Debug.Log($"Correct card role: {role}");
 
-        //yield return new WaitForSeconds(2f);
+        //move correct card to target over 1/2 second
+        float time = 0;
+        while (time < 0.5f)
+        {
+            go.transform.position = Vector3.Lerp(correctSpawn.transform.position, correctTarget.transform.position, time / 0.5f);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        go.transform.position = correctTarget.transform.position;
+
+        yield return new WaitForSeconds(0.5f);
+
+        go.GetComponent<Card>().FlipReveal();
+
+        yield return new WaitForSeconds(1.5f);
+
         
         var currentChallenge = challengeCard.currentChallenge;
         
@@ -95,11 +114,16 @@ public class ReviewArea : MonoBehaviour {
         
         // this is necessary as it clears the reference lists for localHand's slots, cards, etc.
         LocalHand.instance.DestroyHand();
-        
+
+        Destroy(go);
         //destroy rest of cards
         var cards = GameObject.FindGameObjectsWithTag("Card");
         Debug.Log(cards.Length);
-        foreach (var card in cards) card.GetComponent<Card>().StartDestroy();
+        foreach (var card in cards)
+        {
+            Card real = card.GetComponent<Card>();
+            if (real) real.StartDestroy();
+        }
         //assign new cards
         Invoke(nameof(Deal), 0.5f);
     }

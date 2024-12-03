@@ -153,10 +153,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localSlot: {fileID: 402445163}
   enemySlot: {fileID: 1977283871}
+  correctSpawn: {fileID: 1841504491}
+  correctTarget: {fileID: 867551506}
   enemyPlusOne: {fileID: 3137343223236437930, guid: 99b2fbb2bb368f24d972846f969c7c6c, type: 3}
   enemyPlusTwo: {fileID: 126271029379552349, guid: ca46ff5355d6e5b4a9272fc1a5bf8a08, type: 3}
   localPlusOne: {fileID: 1443252207457968756, guid: c17ddfb44b46f9e40babe398ad9d068d, type: 3}
   localPlusTwo: {fileID: 1443252207457968756, guid: 6afe6ef5b7e9cf44ca3ed9e3a41eccc1, type: 3}
+  correctCard: {fileID: 4210891075837935125, guid: e29afa8d81ac0904693ae79319fa1aa4, type: 3}
 --- !u!4 &43958499
 Transform:
   m_ObjectHideFlags: 0

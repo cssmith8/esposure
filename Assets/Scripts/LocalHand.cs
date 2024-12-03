@@ -52,6 +52,10 @@ public class LocalHand : Hand {
     }
 
     public void incrementBranch() {
+        if (GameManager.localInstance.submitted)
+        {
+            return;
+        }
         Branch branchToSet = (Branch)((int)currentBranch % 5 + 1);
         currentBranch = branchToSet;
         SetBranchText();
@@ -59,6 +63,10 @@ public class LocalHand : Hand {
     }
 
     public void decrementBranch() {
+        if (GameManager.localInstance.submitted)
+        {
+            return;
+        }
         Branch branchToSet = (Branch)(((int)currentBranch + 3) % 5 + 1);
         currentBranch = branchToSet;
         SetBranchText();
